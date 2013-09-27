@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Armor", "Daishi.Armor\Daishi.Armor.csproj", "{148E86F3-01A3-42E9-BE4D-CB8929F37365}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Armor.Specs", "Daishi.Armor.Specs\Daishi.Armor.Specs.csproj", "{43563212-74F4-42E9-8EE6-FA216653A29B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Armor.UnitTests", "Daishi.Armor.UnitTests\Daishi.Armor.UnitTests.csproj", "{133723AC-4A00-4A92-9613-32CFB9A744D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{148E86F3-01A3-42E9-BE4D-CB8929F37365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{148E86F3-01A3-42E9-BE4D-CB8929F37365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{148E86F3-01A3-42E9-BE4D-CB8929F37365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43563212-74F4-42E9-8EE6-FA216653A29B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43563212-74F4-42E9-8EE6-FA216653A29B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43563212-74F4-42E9-8EE6-FA216653A29B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43563212-74F4-42E9-8EE6-FA216653A29B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133723AC-4A00-4A92-9613-32CFB9A744D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133723AC-4A00-4A92-9613-32CFB9A744D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133723AC-4A00-4A92-9613-32CFB9A744D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133723AC-4A00-4A92-9613-32CFB9A744D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
