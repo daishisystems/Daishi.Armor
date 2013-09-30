@@ -20,12 +20,12 @@ namespace Daishi.Armor {
         }
 
         public void Execute() {
-            using (var buffer = new MemoryStream()) {
-                using (var stream = new CryptoStream(buffer, transform, CryptoStreamMode.Write)) {
-                    stream.Write(input, 0, input.Length);
-                    stream.FlushFinalBlock();
-                    Cipher = buffer.ToArray();
-                }
+            var buffer = new MemoryStream();
+
+            using (var stream = new CryptoStream(buffer, transform, CryptoStreamMode.Write)) {
+                stream.Write(input, 0, input.Length);
+                stream.FlushFinalBlock();
+                Cipher = buffer.ToArray();
             }
         }
 

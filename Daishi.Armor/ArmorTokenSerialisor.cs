@@ -18,29 +18,29 @@ namespace Daishi.Armor {
         }
 
         public void Execute() {
-            using (var stringWriter = new StringWriter()) {
-                using (var jsonTextWriter = new JsonTextWriter(stringWriter)) {
-                    jsonTextWriter.Formatting = Formatting.None;
+            var stringWriter = new StringWriter();
 
+            using (var jsonTextWriter = new JsonTextWriter(stringWriter)) {
+                jsonTextWriter.Formatting = Formatting.None;
+
+                jsonTextWriter.WriteStartObject();
+                jsonTextWriter.WritePropertyName("armortoken");
+                jsonTextWriter.WriteStartObject();
+                jsonTextWriter.WritePropertyName("claims");
+                jsonTextWriter.WriteStartArray();
+
+                foreach (var claim in armorToken.Claims) {
                     jsonTextWriter.WriteStartObject();
-                    jsonTextWriter.WritePropertyName("armortoken");
-                    jsonTextWriter.WriteStartObject();
-                    jsonTextWriter.WritePropertyName("claims");
-                    jsonTextWriter.WriteStartArray();
-
-                    foreach (var claim in armorToken.Claims) {
-                        jsonTextWriter.WriteStartObject();
-                        jsonTextWriter.WritePropertyName(claim.Type);
-                        jsonTextWriter.WriteValue(claim.Value);
-                        jsonTextWriter.WriteEndObject();
-                    }
-
-                    jsonTextWriter.WriteEndArray();
+                    jsonTextWriter.WritePropertyName(claim.Type);
+                    jsonTextWriter.WriteValue(claim.Value);
                     jsonTextWriter.WriteEndObject();
-                    jsonTextWriter.WriteEndObject();
-
-                    SerialisedArmorToken = stringWriter.ToString();
                 }
+
+                jsonTextWriter.WriteEndArray();
+                jsonTextWriter.WriteEndObject();
+                jsonTextWriter.WriteEndObject();
+
+                SerialisedArmorToken = stringWriter.ToString();
             }
         }
 
