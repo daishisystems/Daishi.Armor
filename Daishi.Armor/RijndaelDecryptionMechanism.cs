@@ -1,6 +1,5 @@
 ﻿#region Includes
 
-using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -11,16 +10,11 @@ namespace Daishi.Armor {
         public RijndaelDecryptionMechanism(byte[] key, byte[] input) : base(key, input) {}
 
         public override void Execute() {
-            var initialisationVector = new byte[16];
-            Buffer.BlockCopy(input, 0, initialisationVector, 0, 16);
-
-            var unobfuscatedInput = new byte[input.Length - initialisationVector.Length];
-            Buffer.BlockCopy(input, initialisationVector.Length, unobfuscatedInput, 0, unobfuscatedInput.Length);
-
-            // todo: Abstract to Parser
+            var cipherTextParser = new CipherTextParser(input);
+            cipherTextParser.Execute();
 
             using (var provider = new RijndaelManaged()) {
-                var transformer = new CryptographicTransformer(unobfuscatedInput, provider.CreateDecryptor(key, initialisationVector));
+                var transformer = new CryptographicTransformer(cipherTextParser.Cipher.Message, provider.CreateDecryptor(key, cipherTextParser.Cipher.InitialisationVector));
                 transformer.Execute();
 
                 Output = Encoding.UTF8.GetString(transformer.Cipher);

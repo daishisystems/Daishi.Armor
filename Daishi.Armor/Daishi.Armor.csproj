@@ -52,6 +52,8 @@
     <Compile Include="ArmorTokenEncryptor.cs" />
     <Compile Include="ArmorTokenJsonParser.cs" />
     <Compile Include="ArmorTokenSerialisor.cs" />
+    <Compile Include="Cipher.cs" />
+    <Compile Include="CipherTextParser.cs" />
     <Compile Include="CryptographicTransformer.cs" />
     <Compile Include="EncryptionMechanism.cs" />
     <Compile Include="EncryptionMode.cs" />
