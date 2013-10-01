@@ -14,6 +14,9 @@ namespace Daishi.Armor {
 
         public SignatureParser(HashingMode hashingMode, byte[] hashedArmorToken) {
             switch (hashingMode) {
+                case HashingMode.HMACSHA256:
+                    hashSize = 32;
+                    break;
                 case HashingMode.HMACSHA512:
                     hashSize = 64;
                     break;

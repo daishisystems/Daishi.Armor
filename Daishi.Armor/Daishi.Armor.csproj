@@ -60,6 +60,7 @@
     <Compile Include="EncryptionMode.cs" />
     <Compile Include="HashingMechanism.cs" />
     <Compile Include="HashingMode.cs" />
+    <Compile Include="HMACSHA256HashingMechanism.cs" />
     <Compile Include="HMACSHA512HashingMechanism.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="NonceGenerator.cs" />

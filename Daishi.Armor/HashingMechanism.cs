@@ -1,6 +1,7 @@
 ﻿#region Includes
 
 using System;
+using System.Security.Cryptography;
 
 #endregion
 
@@ -21,6 +22,16 @@ namespace Daishi.Armor {
 
         public void Undo() {
             throw new NotImplementedException();
+        }
+
+        protected void ComputeHash(HMAC hmac) {
+            var hashed = hmac.ComputeHash(input);
+            var output = new byte[hashed.Length + input.Length];
+
+            Buffer.BlockCopy(hashed, 0, output, 0, hashed.Length);
+            Buffer.BlockCopy(input, 0, output, hashed.Length, input.Length);
+
+            Output = Convert.ToBase64String(output);
         }
     }
 }

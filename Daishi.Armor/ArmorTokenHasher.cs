@@ -23,12 +23,19 @@ namespace Daishi.Armor {
 
         public void Execute() {
             switch (hashingMode) {
+                case HashingMode.HMACSHA256:
+                    hashingMechanism = new HMACSHA256HashingMechanism(key, encryptedArmorToken);
+                    hashingMechanism.Execute();
+
+                    HashedArmorToken = hashingMechanism.Output;
+                    break;
                 case HashingMode.HMACSHA512:
                     hashingMechanism = new HMACSHA512HashingMechanism(key, encryptedArmorToken);
                     hashingMechanism.Execute();
 
                     HashedArmorToken = hashingMechanism.Output;
                     break;
+               
             }
         }
 

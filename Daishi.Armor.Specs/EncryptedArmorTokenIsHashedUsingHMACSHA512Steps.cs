@@ -15,9 +15,10 @@ namespace Daishi.Armor.Specs {
         private ArmorToken originalArmorToken;
         private ArmorToken deserialisedArmorToken;
         private readonly byte[] encryptionKey = new byte[32];
-        private readonly byte[] hashingKey = new byte[64];
+        private byte[] hashingKey;
         private string encryptedArmorToken;
         private string hashedArmorToken;
+        private HashingMode hashingMode;
 
         [Given(@"I have supplied an encrypted ArmorToken for hash using HMACSHA(.*)")]
         public void GivenIHaveSuppliedAnEncryptedArmorTokenForHashUsingHMACSHA(int p0) {
@@ -36,9 +37,22 @@ namespace Daishi.Armor.Specs {
 
         [Given(@"I have hashed the encrypted ArmorToken using HMACSHA(.*)")]
         public void GivenIHaveHashedTheEncryptedArmorTokenUsingHMACSHA(int p0) {
+            switch (p0) {
+                case 256:
+                    hashingMode = HashingMode.HMACSHA256;
+                    hashingKey = new byte[32];
+                    break;
+                case 512:
+                    hashingMode = HashingMode.HMACSHA512;
+                    hashingKey = new byte[64];
+                    break;
+                default:
+                    throw new NotImplementedException("Invalid Hashing Mode.");
+            }
+
             using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(hashingKey);
 
-            var armorTokenHasher = new ArmorTokenHasher(HashingMode.HMACSHA512, hashingKey, Convert.FromBase64String(encryptedArmorToken));
+            var armorTokenHasher = new ArmorTokenHasher(hashingMode, hashingKey, Convert.FromBase64String(encryptedArmorToken));
             armorTokenHasher.Execute();
 
             hashedArmorToken = armorTokenHasher.HashedArmorToken;
@@ -46,11 +60,21 @@ namespace Daishi.Armor.Specs {
 
         [When(@"I verify the hashed ArmorToken's HMACSHA(.*) signature")]
         public void WhenIVerifyTheHashedArmorTokenSHMACSHASignature(int p0) {
-            var signatureParser = new SignatureParser(HashingMode.HMACSHA512, Convert.FromBase64String(hashedArmorToken));
+            var signatureParser = new SignatureParser(hashingMode, Convert.FromBase64String(hashedArmorToken));
             signatureParser.Execute();
 
             byte[] hash;
-            using (var hmac = new HMACSHA512(hashingKey)) hash = hmac.ComputeHash(signatureParser.Signature.Message);
+
+            switch (p0) {
+                case 256:
+                    using (var hmac = new HMACSHA256(hashingKey)) hash = hmac.ComputeHash(signatureParser.Signature.Message);
+                    break;
+                case 512:
+                    using (var hmac = new HMACSHA512(hashingKey)) hash = hmac.ComputeHash(signatureParser.Signature.Message);
+                    break;
+                default:
+                    throw new NotImplementedException("Invalid Hashing Mode.");
+            }
 
             Assert.AreEqual(signatureParser.Signature.Hash, hash);
 

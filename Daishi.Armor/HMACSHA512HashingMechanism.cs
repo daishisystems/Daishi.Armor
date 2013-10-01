@@ -1,6 +1,5 @@
 ﻿#region Includes
 
-using System;
 using System.Security.Cryptography;
 
 #endregion
@@ -14,15 +13,7 @@ namespace Daishi.Armor {
         }
 
         public override void Execute() {
-            using (var hmac = new HMACSHA512(key)) {
-                var hashed = hmac.ComputeHash(input);
-                var output = new byte[hashed.Length + input.Length];
-
-                Buffer.BlockCopy(hashed, 0, output, 0, hashed.Length);
-                Buffer.BlockCopy(input, 0, output, hashed.Length, input.Length);
-
-                Output = Convert.ToBase64String(output);
-            }
+            using (var hmac = new HMACSHA512(key)) ComputeHash(hmac);
         }
     }
 }
