@@ -8,8 +8,8 @@ namespace Daishi.Armor {
     public class ArmorTokenEncryptor : ICommand {
         private readonly EncryptionMechanismFactory encryptionMechanismFactory;
 
-        public object Result { get { return EncryptedArmorToken; } }
-        public string EncryptedArmorToken { get; private set; }
+        public object Result { get { return Output; } }
+        public string Output { get; private set; }
 
         public ArmorTokenEncryptor(EncryptionMechanismFactory encryptionMechanismFactory) {
             this.encryptionMechanismFactory = encryptionMechanismFactory;
@@ -19,7 +19,7 @@ namespace Daishi.Armor {
             var encryptionMechanism = encryptionMechanismFactory.CreateEncryptionMechanism();
 
             encryptionMechanism.Execute();
-            EncryptedArmorToken = encryptionMechanism.Output;
+            Output = encryptionMechanism.Output;
         }
 
         public void Undo() {

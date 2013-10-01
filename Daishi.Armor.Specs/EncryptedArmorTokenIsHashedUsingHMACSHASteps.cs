@@ -37,7 +37,7 @@ namespace Daishi.Armor.Specs {
             var armorTokenEncryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             armorTokenEncryptor.Execute();
 
-            encryptedArmorToken = armorTokenEncryptor.EncryptedArmorToken;
+            encryptedArmorToken = armorTokenEncryptor.Output;
         }
 
         [Given(@"I have hashed the encrypted ArmorToken using HMACSHA(.*)")]
@@ -93,11 +93,12 @@ namespace Daishi.Armor.Specs {
             }
 
             Assert.AreEqual(signatureParser.Signature.Hash, hash);
+            var encryptionMechanismFactory = new RijndaelDecryptionMechanismFactory(encryptionKey, signatureParser.Signature.Message);
 
-            var armorTokenDecryptor = new ArmorTokenDecryptor(EncryptionMode.Rijndael, encryptionKey, signatureParser.Signature.Message);
+            var armorTokenDecryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             armorTokenDecryptor.Execute();
 
-            var decrypted = armorTokenDecryptor.DecryptedArmorToken;
+            var decrypted = armorTokenDecryptor.Output;
 
             var armorTokenDeserialisor = new ArmorTokenDeserialisor(decrypted);
             armorTokenDeserialisor.Execute();

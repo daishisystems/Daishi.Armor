@@ -35,7 +35,7 @@ namespace Daishi.Armor.Specs {
             var armorTokenEncryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
 
             armorTokenEncryptor.Execute();
-            encryptedArmorToken = armorTokenEncryptor.EncryptedArmorToken;
+            encryptedArmorToken = armorTokenEncryptor.Output;
         }
 
         [Given(@"I have hashed the valid ArmorToken")]

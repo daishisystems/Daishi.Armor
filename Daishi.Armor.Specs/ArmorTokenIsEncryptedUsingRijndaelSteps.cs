@@ -41,15 +41,17 @@ namespace Daishi.Armor.Specs {
             var encryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             encryptor.Execute();
 
-            encryptedArmorToken = encryptor.EncryptedArmorToken;
+            encryptedArmorToken = encryptor.Output;
         }
 
         [When(@"I decrypt the token using Rijndael encryption")]
         public void WhenIDecryptTheTokenUsingRijndaelEncryption() {
-            var decryptor = new ArmorTokenDecryptor(EncryptionMode.Rijndael, key, Convert.FromBase64String(encryptedArmorToken));
+            var encryptionMechanismFactory = new RijndaelDecryptionMechanismFactory(key, Convert.FromBase64String(encryptedArmorToken));
+
+            var decryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             decryptor.Execute();
 
-            decryptedArmorToken = decryptor.DecryptedArmorToken;
+            decryptedArmorToken = decryptor.Output;
         }
 
         [When(@"I parse the decrypted token")]

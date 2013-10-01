@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArmorToken.cs" />
-    <Compile Include="ArmorTokenDecryptor.cs" />
     <Compile Include="ArmorTokenDeserialisor.cs" />
     <Compile Include="ArmorTokenEncryptor.cs" />
     <Compile Include="ArmorTokenHasher.cs" />
