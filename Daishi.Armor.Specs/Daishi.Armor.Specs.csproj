@@ -65,6 +65,12 @@
       <DependentUpon>ArmorTokenIsSerialised.feature</DependentUpon>
     </Compile>
     <Compile Include="ArmorTokenIsSerialisedSteps.cs" />
+    <Compile Include="ArmorTokenIsValidated.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArmorTokenIsValidated.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ArmorTokenIsValidatedSteps.cs" />
     <Compile Include="EncryptedArmorTokenIsHashedUsingHMACSHA256.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,6 +103,10 @@
     <None Include="ArmorTokenIsSerialised.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ArmorTokenIsSerialised.feature.cs</LastGenOutput>
+    </None>
+    <None Include="ArmorTokenIsValidated.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ArmorTokenIsValidated.feature.cs</LastGenOutput>
     </None>
     <None Include="EncryptedArmorTokenIsHashedUsingHMACSHA256.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
