@@ -16,16 +16,13 @@ namespace Daishi.Armor {
         }
 
         public void Execute() {
-            var initialisationVector = new byte[16];
-            Buffer.BlockCopy(cipherText, 0, initialisationVector, 0, 16);
-
-            var message = new byte[cipherText.Length - initialisationVector.Length];
-            Buffer.BlockCopy(cipherText, initialisationVector.Length, message, 0, message.Length);
-
             Cipher = new Cipher {
-                InitialisationVector = initialisationVector,
-                Message = message
+                InitialisationVector = new byte[16],
+                Message = new byte[cipherText.Length - 16]
             };
+
+            Buffer.BlockCopy(cipherText, 0, Cipher.InitialisationVector, 0, 16);
+            Buffer.BlockCopy(cipherText, Cipher.InitialisationVector.Length, Cipher.Message, 0, Cipher.Message.Length);
         }
 
         public void Undo() {

@@ -50,6 +50,7 @@
     <Compile Include="ArmorTokenDecryptor.cs" />
     <Compile Include="ArmorTokenDeserialisor.cs" />
     <Compile Include="ArmorTokenEncryptor.cs" />
+    <Compile Include="ArmorTokenHasher.cs" />
     <Compile Include="ArmorTokenJsonParser.cs" />
     <Compile Include="ArmorTokenSerialisor.cs" />
     <Compile Include="Cipher.cs" />
@@ -57,11 +58,16 @@
     <Compile Include="CryptographicTransformer.cs" />
     <Compile Include="EncryptionMechanism.cs" />
     <Compile Include="EncryptionMode.cs" />
+    <Compile Include="HashingMechanism.cs" />
+    <Compile Include="HashingMode.cs" />
+    <Compile Include="HMACSHA512HashingMechanism.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="NonceGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RijndaelDecryptionMechanism.cs" />
     <Compile Include="RijndaelEncryptionMechanism.cs" />
+    <Compile Include="Signature.cs" />
+    <Compile Include="SignatureParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
