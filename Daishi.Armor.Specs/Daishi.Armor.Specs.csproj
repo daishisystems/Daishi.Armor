@@ -75,7 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EncryptedArmorTokenIsHashedUsingHMACSHA512.feature</DependentUpon>
     </Compile>
-    <Compile Include="EncryptedArmorTokenIsHashedUsingHMACSHA512Steps.cs" />
+    <Compile Include="EncryptedArmorTokenIsHashedUsingHMACSHASteps.cs" />
     <Compile Include="NonceGeneratorCreatesRandomNumber.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

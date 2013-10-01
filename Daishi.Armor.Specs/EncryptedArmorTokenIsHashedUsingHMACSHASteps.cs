@@ -11,13 +11,16 @@ using TechTalk.SpecFlow;
 
 namespace Daishi.Armor.Specs {
     [Binding]
-    public class EncryptedArmorTokenIsHashedUsingHMACSHA512Steps {
+    public class EncryptedArmorTokenIsHashedUsingHMACSHASteps {
         private ArmorToken originalArmorToken;
         private ArmorToken deserialisedArmorToken;
+
         private readonly byte[] encryptionKey = new byte[32];
-        private byte[] hashingKey;
+        private readonly byte[] hashingKey = new byte[32];
+
         private string encryptedArmorToken;
         private string hashedArmorToken;
+
         private HashingMode hashingMode;
 
         [Given(@"I have supplied an encrypted ArmorToken for hash using HMACSHA(.*)")]
@@ -40,11 +43,9 @@ namespace Daishi.Armor.Specs {
             switch (p0) {
                 case 256:
                     hashingMode = HashingMode.HMACSHA256;
-                    hashingKey = new byte[32];
                     break;
                 case 512:
                     hashingMode = HashingMode.HMACSHA512;
-                    hashingKey = new byte[64];
                     break;
                 default:
                     throw new NotImplementedException("Invalid Hashing Mode.");

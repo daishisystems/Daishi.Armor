@@ -35,7 +35,6 @@ namespace Daishi.Armor {
 
                     HashedArmorToken = hashingMechanism.Output;
                     break;
-               
             }
         }
 
