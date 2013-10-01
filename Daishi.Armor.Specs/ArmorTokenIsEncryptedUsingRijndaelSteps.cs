@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -35,8 +36,9 @@ namespace Daishi.Armor.Specs {
         [Given(@"I have encrypted the token using Rijndael encryption")]
         public void GivenIHaveEncryptedTheTokenUsingRijndaelEncryption() {
             using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(key);
+            var encryptionMechanismFactory = new RijndaelEncryptionMechanismFactory(key, Encoding.UTF8.GetBytes(serialisedArmorToken));
 
-            var encryptor = new ArmorTokenEncryptor(EncryptionMode.Rijndael, key, serialisedArmorToken);
+            var encryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             encryptor.Execute();
 
             encryptedArmorToken = encryptor.EncryptedArmorToken;

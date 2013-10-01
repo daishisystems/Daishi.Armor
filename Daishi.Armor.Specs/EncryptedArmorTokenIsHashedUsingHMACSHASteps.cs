@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -31,8 +32,9 @@ namespace Daishi.Armor.Specs {
             armorTokenSerialisor.Execute();
 
             using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(encryptionKey);
+            var encryptionMechanismFactory = new RijndaelEncryptionMechanismFactory(encryptionKey, Encoding.UTF8.GetBytes(armorTokenSerialisor.SerialisedArmorToken));
 
-            var armorTokenEncryptor = new ArmorTokenEncryptor(EncryptionMode.Rijndael, encryptionKey, armorTokenSerialisor.SerialisedArmorToken);
+            var armorTokenEncryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             armorTokenEncryptor.Execute();
 
             encryptedArmorToken = armorTokenEncryptor.EncryptedArmorToken;
@@ -40,6 +42,29 @@ namespace Daishi.Armor.Specs {
 
         [Given(@"I have hashed the encrypted ArmorToken using HMACSHA(.*)")]
         public void GivenIHaveHashedTheEncryptedArmorTokenUsingHMACSHA(int p0) {
+            HashingMechanismFactory hashingMechanismFactory;
+
+            switch (p0) {
+                case 256:
+                    hashingMechanismFactory = new HMACSHA256HashingMechanismFactory(hashingKey, Convert.FromBase64String(encryptedArmorToken));
+                    break;
+                case 512:
+                    hashingMechanismFactory = new HMACSHA512HashingMechanismFactory(hashingKey, Convert.FromBase64String(encryptedArmorToken));
+                    break;
+                default:
+                    throw new NotImplementedException("Invalid Hashing Mode.");
+            }
+
+            using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(hashingKey);
+
+            var armorTokenHasher = new ArmorTokenHasher(hashingMechanismFactory);
+            armorTokenHasher.Execute();
+
+            hashedArmorToken = armorTokenHasher.HashedArmorToken;
+        }
+
+        [When(@"I verify the hashed ArmorToken's HMACSHA(.*) signature")]
+        public void WhenIVerifyTheHashedArmorTokenSHMACSHASignature(int p0) {
             switch (p0) {
                 case 256:
                     hashingMode = HashingMode.HMACSHA256;
@@ -51,16 +76,6 @@ namespace Daishi.Armor.Specs {
                     throw new NotImplementedException("Invalid Hashing Mode.");
             }
 
-            using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(hashingKey);
-
-            var armorTokenHasher = new ArmorTokenHasher(hashingMode, hashingKey, Convert.FromBase64String(encryptedArmorToken));
-            armorTokenHasher.Execute();
-
-            hashedArmorToken = armorTokenHasher.HashedArmorToken;
-        }
-
-        [When(@"I verify the hashed ArmorToken's HMACSHA(.*) signature")]
-        public void WhenIVerifyTheHashedArmorTokenSHMACSHASignature(int p0) {
             var signatureParser = new SignatureParser(hashingMode, Convert.FromBase64String(hashedArmorToken));
             signatureParser.Execute();
 

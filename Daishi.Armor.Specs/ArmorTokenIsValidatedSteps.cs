@@ -3,6 +3,7 @@
 using System;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 using TechTalk.SpecFlow;
 
 #endregion
@@ -29,7 +30,9 @@ namespace Daishi.Armor.Specs {
         [Given(@"I have encrypted the valid ArmorToken")]
         public void GivenIHaveEncryptedTheValidArmorToken() {
             using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(encryptionKey);
-            var armorTokenEncryptor = new ArmorTokenEncryptor(EncryptionMode.Rijndael, encryptionKey, serialisedArmorToken);
+
+            var encryptionMechanismFactory = new RijndaelEncryptionMechanismFactory(encryptionKey, Encoding.UTF8.GetBytes(serialisedArmorToken));
+            var armorTokenEncryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
 
             armorTokenEncryptor.Execute();
             encryptedArmorToken = armorTokenEncryptor.EncryptedArmorToken;
@@ -38,18 +41,16 @@ namespace Daishi.Armor.Specs {
         [Given(@"I have hashed the valid ArmorToken")]
         public void GivenIHaveHashedTheValidArmorToken() {
             using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(hashingKey);
-            var armorTokenHasher = new ArmorTokenHasher(HashingMode.HMACSHA512, hashingKey, Convert.FromBase64String(encryptedArmorToken));
+
+            var hashingMechanismFactory = new HMACSHA512HashingMechanismFactory(hashingKey, Convert.FromBase64String(encryptedArmorToken));
+            var armorTokenHasher = new ArmorTokenHasher(hashingMechanismFactory);
 
             armorTokenHasher.Execute();
             hashedArmorToken = armorTokenHasher.HashedArmorToken;
         }
 
         [When(@"I validate the valid ArmorToken")]
-        public void WhenIValidateTheValidArmorToken() {
-            
-            
-
-        }
+        public void WhenIValidateTheValidArmorToken() {}
 
         [Then(@"I should return a valid result")]
         public void ThenIShouldReturnAValidResult() {
