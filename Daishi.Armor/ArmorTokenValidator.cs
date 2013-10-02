@@ -15,6 +15,7 @@ namespace Daishi.Armor {
             this.securedArmorToken = securedArmorToken;
         }
 
+        // todo: Chain of Responsibility, DI - look at CipherTextParser as dependency
         public void Execute() {}
 
         public void Undo() {

@@ -3,7 +3,7 @@
         public RijndaelEncryptionMechanismFactory(byte[] key, byte[] input) : base(key, input) {}
 
         public override EncryptionMechanism CreateEncryptionMechanism() {
-            return new RijndaelEncryptionMechanism(key, input);
+            return new RijndaelEncryptionMechanism(key, new EncryptionCryptographicTransformerFactory(), input);
         }
     }
 }

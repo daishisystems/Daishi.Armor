@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 #endregion
 
 namespace Daishi.Armor {
-    internal class CryptographicTransformer : ICommand {
+    public class CryptographicTransformer : ICommand {
         private readonly byte[] input;
         private readonly ICryptoTransform transform;
 

@@ -10,6 +10,7 @@ namespace Daishi.Armor {
 
         public object Result { get { return Cipher; } }
         public Cipher Cipher { get; private set; }
+        public byte[] Input { get { return cipherText; } }
 
         public CipherTextParser(byte[] cipherText) {
             this.cipherText = cipherText;

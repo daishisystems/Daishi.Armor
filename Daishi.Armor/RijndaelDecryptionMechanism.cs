@@ -7,14 +7,19 @@ using System.Text;
 
 namespace Daishi.Armor {
     public class RijndaelDecryptionMechanism : EncryptionMechanism {
-        public RijndaelDecryptionMechanism(byte[] key, byte[] input) : base(key, input) {}
+        private readonly CryptographicTransformerFactory cryptographicTransformerFactory;
+        private readonly CipherTextParser cipherTextParser;
+
+        public RijndaelDecryptionMechanism(byte[] key, CryptographicTransformerFactory cryptographicTransformerFactory, CipherTextParser cipherTextParser) : base(key, cipherTextParser.Input) {
+            this.cryptographicTransformerFactory = cryptographicTransformerFactory;
+            this.cipherTextParser = cipherTextParser;
+        }
 
         public override void Execute() {
-            var cipherTextParser = new CipherTextParser(input);
             cipherTextParser.Execute();
 
             using (var provider = new RijndaelManaged()) {
-                var transformer = new CryptographicTransformer(cipherTextParser.Cipher.Message, provider.CreateDecryptor(key, cipherTextParser.Cipher.InitialisationVector));
+                var transformer = cryptographicTransformerFactory.CreateCryptographicTransformer(provider, cipherTextParser.Cipher.Message, key, cipherTextParser.Cipher.InitialisationVector);
                 transformer.Execute();
 
                 Output = Encoding.UTF8.GetString(transformer.Cipher);

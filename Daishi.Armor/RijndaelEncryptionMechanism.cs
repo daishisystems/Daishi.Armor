@@ -7,7 +7,11 @@ using System.Security.Cryptography;
 
 namespace Daishi.Armor {
     public class RijndaelEncryptionMechanism : EncryptionMechanism {
-        public RijndaelEncryptionMechanism(byte[] key, byte[] input) : base(key, input) {}
+        private readonly CryptographicTransformerFactory cryptographicTransformerFactory;
+
+        public RijndaelEncryptionMechanism(byte[] key, CryptographicTransformerFactory cryptographicTransformerFactory, byte[] input) : base(key, input) {
+            this.cryptographicTransformerFactory = cryptographicTransformerFactory;
+        }
 
         public override void Execute() {
             var initialisationVector = new byte[16];
@@ -16,7 +20,7 @@ namespace Daishi.Armor {
             byte[] inputCipher;
 
             using (var provider = new RijndaelManaged()) {
-                var transformer = new CryptographicTransformer(input, provider.CreateEncryptor(key, initialisationVector));
+                var transformer = cryptographicTransformerFactory.CreateCryptographicTransformer(provider, input, key, initialisationVector);
                 transformer.Execute();
 
                 inputCipher = transformer.Cipher;
