@@ -1,9 +1,11 @@
 ﻿#region Includes
 
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 #endregion
@@ -17,6 +19,8 @@ namespace Daishi.Armor.Specs {
 
         private readonly byte[] encryptionKey = new byte[32];
         private readonly byte[] hashingKey = new byte[32];
+
+        private ArmorTokenValidator armorTokenValidator;
 
         [Given(@"I have supplied a valid ArmorToken")]
         public void GivenIHaveSuppliedAValidArmorToken() {
@@ -50,11 +54,19 @@ namespace Daishi.Armor.Specs {
         }
 
         [When(@"I validate the valid ArmorToken")]
-        public void WhenIValidateTheValidArmorToken() {}
+        public void WhenIValidateTheValidArmorToken() {
+            var validationSteps = new List<ArmorTokenValidationStep> {
+                new HashedArmorTokenValidationStep(new HashedArmorTokenParser(HashingMode.HMACSHA512, Convert.FromBase64String(hashedArmorToken)),
+                                                   new HMACSHA512ArmorTokenHasherFactory(hashingKey))
+            };
+
+            armorTokenValidator = new ArmorTokenValidator(validationSteps.ToArray());
+            armorTokenValidator.Execute();
+        }
 
         [Then(@"I should return a valid result")]
         public void ThenIShouldReturnAValidResult() {
-            ScenarioContext.Current.Pending();
+            Assert.IsTrue(armorTokenValidator.ValidationStepResult.IsValid);
         }
     }
 }

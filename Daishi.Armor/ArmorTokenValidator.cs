@@ -6,17 +6,29 @@ using System;
 
 namespace Daishi.Armor {
     public class ArmorTokenValidator : ICommand {
-        private readonly string securedArmorToken;
+        private readonly ArmorTokenValidationStep[] armorTokenValidationSteps;
 
-        public object Result { get { return IsValid; } }
-        public bool IsValid { get; private set; }
+        public object Result { get { return ValidationStepResult; } }
+        public ValidationStepResult ValidationStepResult { get; private set; }
 
-        public ArmorTokenValidator(string securedArmorToken) {
-            this.securedArmorToken = securedArmorToken;
+        public ArmorTokenValidator(params ArmorTokenValidationStep[] armorTokenValidationSteps) {
+            this.armorTokenValidationSteps = armorTokenValidationSteps;
         }
 
-        // todo: Chain of Responsibility, DI - look at CipherTextParser as dependency
-        public void Execute() {}
+        public void Execute() {
+            var stepCount = armorTokenValidationSteps.Length;
+            var i = 0;
+            ArmorTokenValidationStep currentStep;
+
+            do {
+                currentStep = armorTokenValidationSteps[i];
+                currentStep.Execute();
+
+                i++;
+            } while (i < stepCount && currentStep.ValidationStepResult.IsValid);
+
+            ValidationStepResult = currentStep.ValidationStepResult;
+        }
 
         public void Undo() {
             throw new NotImplementedException();

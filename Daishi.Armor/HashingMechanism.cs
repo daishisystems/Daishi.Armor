@@ -8,10 +8,11 @@ using System.Security.Cryptography;
 namespace Daishi.Armor {
     public abstract class HashingMechanism : ICommand {
         protected readonly byte[] key;
-        protected readonly byte[] input;
+        private readonly byte[] input;
 
-        public object Result { get; private set; }
-        public string Output { get; set; }
+        public object Result { get { return Output; } }
+        public string Output { get; private set; }
+        public string Hash { get; private set; }
 
         protected HashingMechanism(byte[] key, byte[] input) {
             this.key = key;
@@ -32,6 +33,7 @@ namespace Daishi.Armor {
             Buffer.BlockCopy(input, 0, output, hashed.Length, input.Length);
 
             Output = Convert.ToBase64String(output);
+            Hash = Convert.ToBase64String(hashed);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Daishi.Armor {
 
         public object Result { get { return HashedArmorToken; } }
         public string HashedArmorToken { get; private set; }
+        public string Hash { get; private set; }
 
         public ArmorTokenHasher(HashingMechanismFactory hashingMechanismFactory) {
             this.hashingMechanismFactory = hashingMechanismFactory;
@@ -17,9 +18,10 @@ namespace Daishi.Armor {
 
         public void Execute() {
             var hashingMechanism = hashingMechanismFactory.CreateHashingMechanism();
-
             hashingMechanism.Execute();
+
             HashedArmorToken = hashingMechanism.Output;
+            Hash = hashingMechanism.Hash;
         }
 
         public void Undo() {

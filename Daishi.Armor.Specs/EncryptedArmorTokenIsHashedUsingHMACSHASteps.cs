@@ -76,24 +76,24 @@ namespace Daishi.Armor.Specs {
                     throw new NotImplementedException("Invalid Hashing Mode.");
             }
 
-            var signatureParser = new SignatureParser(hashingMode, Convert.FromBase64String(hashedArmorToken));
-            signatureParser.Execute();
+            var hashedArmorTokenParser = new HashedArmorTokenParser(hashingMode, Convert.FromBase64String(hashedArmorToken));
+            hashedArmorTokenParser.Execute();
 
             byte[] hash;
 
             switch (p0) {
                 case 256:
-                    using (var hmac = new HMACSHA256(hashingKey)) hash = hmac.ComputeHash(signatureParser.Signature.Message);
+                    using (var hmac = new HMACSHA256(hashingKey)) hash = hmac.ComputeHash(hashedArmorTokenParser.HashedArmorToken.ArmorToken);
                     break;
                 case 512:
-                    using (var hmac = new HMACSHA512(hashingKey)) hash = hmac.ComputeHash(signatureParser.Signature.Message);
+                    using (var hmac = new HMACSHA512(hashingKey)) hash = hmac.ComputeHash(hashedArmorTokenParser.HashedArmorToken.ArmorToken);
                     break;
                 default:
                     throw new NotImplementedException("Invalid Hashing Mode.");
             }
 
-            Assert.AreEqual(signatureParser.Signature.Hash, hash);
-            var encryptionMechanismFactory = new RijndaelDecryptionMechanismFactory(encryptionKey, signatureParser.Signature.Message);
+            Assert.AreEqual(hashedArmorTokenParser.HashedArmorToken.Hash, hash);
+            var encryptionMechanismFactory = new RijndaelDecryptionMechanismFactory(encryptionKey, hashedArmorTokenParser.HashedArmorToken.ArmorToken);
 
             var armorTokenDecryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             armorTokenDecryptor.Execute();

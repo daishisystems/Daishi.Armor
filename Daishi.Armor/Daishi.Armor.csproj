@@ -50,8 +50,10 @@
     <Compile Include="ArmorTokenDeserialisor.cs" />
     <Compile Include="ArmorTokenEncryptor.cs" />
     <Compile Include="ArmorTokenHasher.cs" />
+    <Compile Include="ArmorTokenHasherFactory.cs" />
     <Compile Include="ArmorTokenJsonParser.cs" />
     <Compile Include="ArmorTokenSerialisor.cs" />
+    <Compile Include="ArmorTokenValidationStep.cs" />
     <Compile Include="ArmorTokenValidator.cs" />
     <Compile Include="Cipher.cs" />
     <Compile Include="CipherTextParser.cs" />
@@ -62,11 +64,14 @@
     <Compile Include="EncryptionMechanism.cs" />
     <Compile Include="EncryptionMechanismFactory.cs" />
     <Compile Include="EncryptionMode.cs" />
+    <Compile Include="HashedArmorTokenValidationStep.cs" />
     <Compile Include="HashingMechanism.cs" />
     <Compile Include="HashingMechanismFactory.cs" />
     <Compile Include="HashingMode.cs" />
+    <Compile Include="HMACSHA256ArmorTokenHasherFactory.cs" />
     <Compile Include="HMACSHA256HashingMechanism.cs" />
     <Compile Include="HMACSHA256HashingMechanismFactory.cs" />
+    <Compile Include="HMACSHA512ArmorTokenHasherFactory.cs" />
     <Compile Include="HMACSHA512HashingMechanism.cs" />
     <Compile Include="HMACSHA512HashingMechanismFactory.cs" />
     <Compile Include="ICommand.cs" />
@@ -76,8 +81,9 @@
     <Compile Include="RijndaelDecryptionMechanismFactory.cs" />
     <Compile Include="RijndaelEncryptionMechanism.cs" />
     <Compile Include="RijndaelEncryptionMechanismFactory.cs" />
-    <Compile Include="Signature.cs" />
-    <Compile Include="SignatureParser.cs" />
+    <Compile Include="HashedArmorToken.cs" />
+    <Compile Include="HashedArmorTokenParser.cs" />
+    <Compile Include="ValidationStepResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
