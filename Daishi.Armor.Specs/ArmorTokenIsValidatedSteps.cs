@@ -1,7 +1,6 @@
 ﻿#region Includes
 
 using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,12 +54,10 @@ namespace Daishi.Armor.Specs {
 
         [When(@"I validate the valid ArmorToken")]
         public void WhenIValidateTheValidArmorToken() {
-            var validationSteps = new List<ArmorTokenValidationStep> {
-                new HashedArmorTokenValidationStep(new HashedArmorTokenParser(HashingMode.HMACSHA512, Convert.FromBase64String(hashedArmorToken)),
-                                                   new HMACSHA512ArmorTokenHasherFactory(hashingKey))
-            };
+            var step1 = new HashedArmorTokenValidationStep(new HashedArmorTokenParser(HashingMode.HMACSHA512, Convert.FromBase64String(hashedArmorToken)), new HMACSHA512ArmorTokenHasherFactory(hashingKey));
+            var step2 = new EncryptedArmorTokenValidationStep(new RijndaelDecryptionMechanismFactory(encryptionKey));
 
-            armorTokenValidator = new ArmorTokenValidator(validationSteps.ToArray());
+            armorTokenValidator = new ArmorTokenValidator(Convert.FromBase64String(hashedArmorToken), new ArmorTokenValidationStep[] {step1, step2});
             armorTokenValidator.Execute();
         }
 

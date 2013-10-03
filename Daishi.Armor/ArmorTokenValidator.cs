@@ -6,12 +6,14 @@ using System;
 
 namespace Daishi.Armor {
     public class ArmorTokenValidator : ICommand {
+        private byte[] armorToken;
         private readonly ArmorTokenValidationStep[] armorTokenValidationSteps;
 
         public object Result { get { return ValidationStepResult; } }
         public ValidationStepResult ValidationStepResult { get; private set; }
 
-        public ArmorTokenValidator(params ArmorTokenValidationStep[] armorTokenValidationSteps) {
+        public ArmorTokenValidator(byte[] armorToken, ArmorTokenValidationStep[] armorTokenValidationSteps) {
+            this.armorToken = armorToken;
             this.armorTokenValidationSteps = armorTokenValidationSteps;
         }
 
@@ -22,7 +24,8 @@ namespace Daishi.Armor {
 
             do {
                 currentStep = armorTokenValidationSteps[i];
-                currentStep.Execute();
+                currentStep.Validate(armorToken);
+                armorToken = currentStep.ValidationStepResult.Output;
 
                 i++;
             } while (i < stepCount && currentStep.ValidationStepResult.IsValid);

@@ -1,5 +1,6 @@
 ﻿namespace Daishi.Armor {
     public class RijndaelDecryptionMechanismFactory : EncryptionMechanismFactory {
+        public RijndaelDecryptionMechanismFactory(byte[] key) : base(key) {}
         public RijndaelDecryptionMechanismFactory(byte[] key, byte[] input) : base(key, input) {}
 
         public override EncryptionMechanism CreateEncryptionMechanism() {

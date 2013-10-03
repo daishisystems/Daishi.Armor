@@ -60,6 +60,7 @@
     <Compile Include="CryptographicTransformer.cs" />
     <Compile Include="CryptographicTransformerFactory.cs" />
     <Compile Include="DecryptionCryptographicTransformerFactory.cs" />
+    <Compile Include="EncryptedArmorTokenValidationStep.cs" />
     <Compile Include="EncryptionCryptographicTransformerFactory.cs" />
     <Compile Include="EncryptionMechanism.cs" />
     <Compile Include="EncryptionMechanismFactory.cs" />

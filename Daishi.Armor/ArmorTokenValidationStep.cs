@@ -11,8 +11,18 @@ namespace Daishi.Armor {
 
         public abstract void Execute();
 
+        public virtual void Validate(byte[] armorToken) {
+            Execute();
+        }
+
         public void Undo() {
             throw new NotImplementedException();
         }
+    }
+
+    public class ArmorTokenValidationStepManager {
+        public byte[] ArmorToken { get; set; }
+
+        public ArmorTokenValidationStep[] ArmorTokenValidationSteps { get; set; }
     }
 }

@@ -23,7 +23,8 @@ namespace Daishi.Armor {
 
             ValidationStepResult = new ValidationStepResult {
                 IsValid = isValid,
-                Message = isValid ? "Untampered" : "Tampered"
+                Message = isValid ? "Untampered" : "Tampered",
+                Output = hashedArmorTokenParser.HashedArmorToken.ArmorToken
             };
         }
     }
