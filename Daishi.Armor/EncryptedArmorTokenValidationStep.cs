@@ -9,7 +9,7 @@ namespace Daishi.Armor {
         private readonly EncryptionMechanismFactory encryptionMechanismFactory;
         private EncryptionMechanism encryptionMechanism;
 
-        public EncryptedArmorTokenValidationStep(EncryptionMechanismFactory encryptionMechanismFactory) {
+        public EncryptedArmorTokenValidationStep(ArmorTokenValidationStep next, EncryptionMechanismFactory encryptionMechanismFactory) : base(next) {
             this.encryptionMechanismFactory = encryptionMechanismFactory;
         }
 
@@ -18,7 +18,8 @@ namespace Daishi.Armor {
                 encryptionMechanism.Execute();
                 ValidationStepResult = new ValidationStepResult {
                     IsValid = true,
-                    Message = "Untampered"
+                    Message = "Untampered",
+                    Output = encryptionMechanism.Output
                 };
             }
             catch (CryptographicException) {
@@ -29,8 +30,8 @@ namespace Daishi.Armor {
             }
         }
 
-        public override void Validate(byte[] armorToken) {
-            encryptionMechanism = encryptionMechanismFactory.CreateEncryptionMechanism(armorToken);
+        public override void Validate(object armorToken) {
+            encryptionMechanism = encryptionMechanismFactory.CreateEncryptionMechanism((byte[]) armorToken);
             base.Validate(armorToken);
         }
     }
