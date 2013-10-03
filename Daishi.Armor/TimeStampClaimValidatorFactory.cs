@@ -6,9 +6,15 @@ using System.Security.Claims;
 #endregion
 
 namespace Daishi.Armor {
-    public class TimeStampClaimValidatorFactory : ClaimValidatorFactory<TimeStampClaimValidator, int> {
-        public override TimeStampClaimValidator CreateClaimValidator(IEnumerable<Claim> claims) {
-            return new TimeStampClaimValidator(claims);
+    public class TimeStampClaimValidatorFactory : ClaimValidatorFactory {
+        private readonly int timeout;
+
+        public TimeStampClaimValidatorFactory(int timeout) {
+            this.timeout = timeout;
+        }
+
+        public override ClaimValidator CreateClaimValidator(IEnumerable<Claim> claims) {
+            return new TimeStampClaimValidator(claims, timeout);
         }
     }
 }

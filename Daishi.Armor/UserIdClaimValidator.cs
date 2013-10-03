@@ -6,12 +6,16 @@ using System.Security.Claims;
 #endregion
 
 namespace Daishi.Armor {
-    public class UserIdClaimValidator : ClaimValidator<string> {
-        public UserIdClaimValidator(IEnumerable<Claim> claims) : base(claims) {}
+    public class UserIdClaimValidator : ClaimValidator {
+        private readonly string userId;
 
-        public override bool Validate(string expected) {
+        public UserIdClaimValidator(IEnumerable<Claim> claims, string userId) : base(claims) {
+            this.userId = userId;
+        }
+
+        public override void Execute() {
             Claim claim;
-            return Validate("UserId", out claim) && expected.Equals(claim.Value);
+            IsValid = Validate("UserId", out claim) && userId.Equals(claim.Value);
         }
     }
 }
