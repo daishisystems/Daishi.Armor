@@ -83,17 +83,17 @@ namespace Daishi.Armor.Specs {
 
             switch (p0) {
                 case 256:
-                    using (var hmac = new HMACSHA256(hashingKey)) hash = hmac.ComputeHash(hashedArmorTokenParser.HashedArmorToken.ArmorToken);
+                    using (var hmac = new HMACSHA256(hashingKey)) hash = hmac.ComputeHash(hashedArmorTokenParser.ParsedArmorToken.ArmorToken);
                     break;
                 case 512:
-                    using (var hmac = new HMACSHA512(hashingKey)) hash = hmac.ComputeHash(hashedArmorTokenParser.HashedArmorToken.ArmorToken);
+                    using (var hmac = new HMACSHA512(hashingKey)) hash = hmac.ComputeHash(hashedArmorTokenParser.ParsedArmorToken.ArmorToken);
                     break;
                 default:
                     throw new NotImplementedException("Invalid Hashing Mode.");
             }
 
-            Assert.AreEqual(hashedArmorTokenParser.HashedArmorToken.Hash, hash);
-            var encryptionMechanismFactory = new RijndaelDecryptionMechanismFactory(encryptionKey, hashedArmorTokenParser.HashedArmorToken.ArmorToken);
+            Assert.AreEqual(hashedArmorTokenParser.ParsedArmorToken.Hash, hash);
+            var encryptionMechanismFactory = new RijndaelDecryptionMechanismFactory(encryptionKey, hashedArmorTokenParser.ParsedArmorToken.ArmorToken);
 
             var armorTokenDecryptor = new ArmorTokenEncryptor(encryptionMechanismFactory);
             armorTokenDecryptor.Execute();

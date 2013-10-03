@@ -16,16 +16,21 @@ namespace Daishi.Armor {
 
         public override void Execute() {
             hashedArmorTokenParser.Execute();
-            var armorTokenHasher = armorTokenHasherFactory.CreateArmorTokenHasher(hashedArmorTokenParser.HashedArmorToken.ArmorToken);
+            var armorTokenHasher = armorTokenHasherFactory.CreateArmorTokenHasher(hashedArmorTokenParser.ParsedArmorToken.ArmorToken);
 
             armorTokenHasher.Execute();
-            var isValid = armorTokenHasher.Hash.Equals(Convert.ToBase64String(hashedArmorTokenParser.HashedArmorToken.Hash));
+            var isValid = armorTokenHasher.Hash.Equals(Convert.ToBase64String(hashedArmorTokenParser.ParsedArmorToken.Hash));
 
             ValidationStepResult = new ValidationStepResult {
                 IsValid = isValid,
                 Message = isValid ? "Untampered" : "Tampered",
-                Output = hashedArmorTokenParser.HashedArmorToken.ArmorToken
+                Output = hashedArmorTokenParser.ParsedArmorToken.ArmorToken
             };
+        }
+
+        public override void Validate(byte[] armorToken) {
+            hashedArmorTokenParser.HashedArmorToken = armorToken;
+            base.Validate(armorToken);
         }
     }
 }

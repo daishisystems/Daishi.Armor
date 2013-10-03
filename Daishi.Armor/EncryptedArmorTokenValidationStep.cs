@@ -1,6 +1,6 @@
 ﻿#region Includes
 
-using System;
+using System.Security.Cryptography;
 
 #endregion
 
@@ -21,7 +21,7 @@ namespace Daishi.Armor {
                     Message = "Untampered"
                 };
             }
-            catch (Exception exception) {
+            catch (CryptographicException) {
                 ValidationStepResult = new ValidationStepResult {
                     IsValid = false,
                     Message = "Tampered"

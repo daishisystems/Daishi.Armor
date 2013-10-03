@@ -7,12 +7,12 @@ using System;
 namespace Daishi.Armor {
     public class HashedArmorTokenParser : ICommand {
         private readonly int hashSize;
-        private readonly byte[] hashedArmorToken;
 
-        public object Result { get { return HashedArmorToken; } }
-        public HashedArmorToken HashedArmorToken { get; private set; }
+        public byte[] HashedArmorToken { get; set; }
+        public object Result { get { return ParsedArmorToken; } }
+        public ParsedArmorToken ParsedArmorToken { get; private set; }
 
-        public HashedArmorTokenParser(HashingMode hashingMode, byte[] hashedArmorToken) {
+        public HashedArmorTokenParser(HashingMode hashingMode) {
             switch (hashingMode) {
                 case HashingMode.HMACSHA256:
                     hashSize = 32;
@@ -21,18 +21,25 @@ namespace Daishi.Armor {
                     hashSize = 64;
                     break;
             }
+        }
 
-            this.hashedArmorToken = hashedArmorToken;
+        public HashedArmorTokenParser(HashingMode hashingMode, byte[] hashedArmorToken) : this(hashingMode) {
+            HashedArmorToken = hashedArmorToken;
         }
 
         public void Execute() {
-            HashedArmorToken = new HashedArmorToken {
+            ParsedArmorToken = new ParsedArmorToken {
                 Hash = new byte[hashSize],
-                ArmorToken = new byte[hashedArmorToken.Length - hashSize]
+                ArmorToken = new byte[HashedArmorToken.Length - hashSize]
             };
 
-            Buffer.BlockCopy(hashedArmorToken, 0, HashedArmorToken.Hash, 0, hashSize);
-            Buffer.BlockCopy(hashedArmorToken, hashSize, HashedArmorToken.ArmorToken, 0, HashedArmorToken.ArmorToken.Length);
+            Buffer.BlockCopy(HashedArmorToken, 0, ParsedArmorToken.Hash, 0, hashSize);
+            Buffer.BlockCopy(HashedArmorToken, hashSize, ParsedArmorToken.ArmorToken, 0, ParsedArmorToken.ArmorToken.Length);
+        }
+
+        public void Execute(byte[] hashedArmorToken) {
+            HashedArmorToken = hashedArmorToken;
+            Execute();
         }
 
         public void Undo() {
