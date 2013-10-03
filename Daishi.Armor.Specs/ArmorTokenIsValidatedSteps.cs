@@ -54,11 +54,12 @@ namespace Daishi.Armor.Specs {
 
         [When(@"I validate the valid ArmorToken")]
         public void WhenIValidateTheValidArmorToken() {
-            var step3 = new SerialisedArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep());
+            var step4 = new ClaimsArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep(), "user.name@company.com", 300000);
+            var step3 = new SerialisedArmorTokenValidationStep(step4);
             var step2 = new EncryptedArmorTokenValidationStep(step3, new RijndaelDecryptionMechanismFactory(encryptionKey));
             var step1 = new HashedArmorTokenValidationStep(step2, new HashedArmorTokenParser(HashingMode.HMACSHA512), new HMACSHA512ArmorTokenHasherFactory(hashingKey));
 
-            armorTokenValidator = new ArmorTokenValidator(Convert.FromBase64String(hashedArmorToken), new ArmorTokenValidationStep[] {step1, step2});
+            armorTokenValidator = new ArmorTokenValidator(Convert.FromBase64String(hashedArmorToken), step1);
             armorTokenValidator.Execute();
         }
 

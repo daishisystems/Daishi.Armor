@@ -85,6 +85,7 @@
     <Compile Include="RijndaelEncryptionMechanismFactory.cs" />
     <Compile Include="ParsedArmorToken.cs" />
     <Compile Include="HashedArmorTokenParser.cs" />
+    <Compile Include="SerialisedArmorTokenValidationStep.cs" />
     <Compile Include="ValidationStepResult.cs" />
   </ItemGroup>
   <ItemGroup>
