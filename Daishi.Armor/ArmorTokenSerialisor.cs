@@ -8,10 +8,12 @@ using Newtonsoft.Json;
 
 namespace Daishi.Armor {
     public class ArmorTokenSerialisor : ICommand {
-        private readonly ArmorToken armorToken;
+        private ArmorToken armorToken;
 
         public object Result { get { return SerialisedArmorToken; } }
         public string SerialisedArmorToken { get; private set; }
+
+        public ArmorTokenSerialisor() {}
 
         public ArmorTokenSerialisor(ArmorToken armorToken) {
             this.armorToken = armorToken;
@@ -42,6 +44,15 @@ namespace Daishi.Armor {
 
                 SerialisedArmorToken = stringWriter.ToString();
             }
+        }
+
+        public void Serialise() {
+            Execute();
+        }
+
+        public void Serialise(ArmorToken armorToken) {
+            this.armorToken = armorToken;
+            Execute();
         }
 
         public void Undo() {

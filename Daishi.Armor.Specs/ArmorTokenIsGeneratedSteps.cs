@@ -30,7 +30,7 @@ namespace Daishi.Armor.Specs {
 
             var step3 = new HashArmorTokenGenerationStep(new HMACSHA512HashingMechanismFactory(hashingKey), new EmptyArmorTokenGenerationStep());
             var step2 = new EncryptArmorTokenGenerationStep(new RijndaelEncryptionMechanismFactory(encryptionKey), step3);
-            var step1 = new SerialiseArmorTokenGenerationStep(new ArmorTokenSerialisor(armorToken), step2);
+            var step1 = new SerialiseArmorTokenGenerationStep(new ArmorTokenSerialisor(), step2);
             var armorTokenGenerator = new ArmorTokenGenerator(armorToken, step1);
 
             armorTokenGenerator.Execute();
@@ -40,7 +40,7 @@ namespace Daishi.Armor.Specs {
         [Then(@"I should be able to successfully validate the generated ArmorToken")]
         public void ThenIShouldBeAbleToSuccessfullyValidateTheGeneratedArmorToken() {
             var step4 = new ClaimsArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep(), new UserIdClaimValidatorFactory("user.name@company.com"), new TimeStampClaimValidatorFactory(300000));
-            var step3 = new SerialisedArmorTokenValidationStep(step4);
+            var step3 = new SerialisedArmorTokenValidationStep(new ArmorTokenDeserialisor(), step4);
             var step2 = new EncryptedArmorTokenValidationStep(step3, new RijndaelDecryptionMechanismFactory(encryptionKey));
             var step1 = new HashedArmorTokenValidationStep(step2, new HashedArmorTokenParser(HashingMode.HMACSHA512), new HMACSHA512ArmorTokenHasherFactory(hashingKey));
 

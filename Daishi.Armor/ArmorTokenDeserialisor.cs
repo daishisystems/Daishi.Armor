@@ -9,10 +9,12 @@ using System.Text;
 
 namespace Daishi.Armor {
     public class ArmorTokenDeserialisor : ICommand {
-        private readonly string serialisedArmorToken;
+        private string serialisedArmorToken;
 
         public object Result { get { return DeserialisedArmorToken; } }
         public ArmorToken DeserialisedArmorToken { get; private set; }
+
+        public ArmorTokenDeserialisor() {}
 
         public ArmorTokenDeserialisor(string serialisedArmorToken) {
             this.serialisedArmorToken = serialisedArmorToken;
@@ -27,6 +29,15 @@ namespace Daishi.Armor {
 
                 DeserialisedArmorToken = parser.Result.SingleOrDefault();
             }
+        }
+
+        public void Deserialise() {
+            Execute();
+        }
+
+        public void Deserialise(string serialisedArmorToken) {
+            this.serialisedArmorToken = serialisedArmorToken;
+            Execute();
         }
 
         public void Undo() {

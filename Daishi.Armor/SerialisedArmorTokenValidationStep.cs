@@ -1,11 +1,14 @@
 ﻿namespace Daishi.Armor {
     public class SerialisedArmorTokenValidationStep : ArmorTokenValidationStep {
-        private ArmorTokenDeserialisor armorTokenDeserialisor;
+        private readonly ArmorTokenDeserialisor armorTokenDeserialisor;
+        private string armorToken;
 
-        public SerialisedArmorTokenValidationStep(ArmorTokenValidationStep next) : base(next) {}
+        public SerialisedArmorTokenValidationStep(ArmorTokenDeserialisor armorTokenDeserialisor, ArmorTokenValidationStep next) : base(next) {
+            this.armorTokenDeserialisor = armorTokenDeserialisor;
+        }
 
         public override void Execute() {
-            armorTokenDeserialisor.Execute();
+            armorTokenDeserialisor.Deserialise(armorToken);
             ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                 IsValid = true,
                 Message = "Untampered",
@@ -14,7 +17,7 @@
         }
 
         public override void Validate(object armorToken) {
-            armorTokenDeserialisor = new ArmorTokenDeserialisor((string) armorToken);
+            this.armorToken = (string) armorToken;
             base.Validate(armorToken);
         }
     }

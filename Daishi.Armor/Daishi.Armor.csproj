@@ -49,6 +49,8 @@
     <Compile Include="ArmorToken.cs" />
     <Compile Include="ArmorTokenDeserialisor.cs" />
     <Compile Include="ArmorTokenEncryptor.cs" />
+    <Compile Include="ArmorTokenGenerationStep.cs" />
+    <Compile Include="ArmorTokenGenerationStepResult.cs" />
     <Compile Include="ArmorTokenGenerator.cs" />
     <Compile Include="ArmorTokenHasher.cs" />
     <Compile Include="ArmorTokenHasherFactory.cs" />
@@ -64,12 +66,15 @@
     <Compile Include="CryptographicTransformer.cs" />
     <Compile Include="CryptographicTransformerFactory.cs" />
     <Compile Include="DecryptionCryptographicTransformerFactory.cs" />
+    <Compile Include="EmptyArmorTokenGenerationStep.cs" />
     <Compile Include="EmptyEncryptedArmorTokenValidationStep.cs" />
+    <Compile Include="EncryptArmorTokenGenerationStep.cs" />
     <Compile Include="EncryptedArmorTokenValidationStep.cs" />
     <Compile Include="EncryptionCryptographicTransformerFactory.cs" />
     <Compile Include="EncryptionMechanism.cs" />
     <Compile Include="EncryptionMechanismFactory.cs" />
     <Compile Include="EncryptionMode.cs" />
+    <Compile Include="HashArmorTokenGenerationStep.cs" />
     <Compile Include="HashedArmorTokenValidationStep.cs" />
     <Compile Include="HashingMechanism.cs" />
     <Compile Include="HashingMechanismFactory.cs" />
@@ -89,6 +94,7 @@
     <Compile Include="RijndaelEncryptionMechanismFactory.cs" />
     <Compile Include="ParsedArmorToken.cs" />
     <Compile Include="HashedArmorTokenParser.cs" />
+    <Compile Include="SerialiseArmorTokenGenerationStep.cs" />
     <Compile Include="SerialisedArmorTokenValidationStep.cs" />
     <Compile Include="TimeStampClaimValidator.cs" />
     <Compile Include="TimeStampClaimValidatorFactory.cs" />
