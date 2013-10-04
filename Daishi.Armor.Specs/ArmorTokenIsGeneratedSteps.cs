@@ -11,6 +11,7 @@ namespace Daishi.Armor.Specs {
     public class ArmorTokenIsGeneratedSteps {
         private ArmorToken armorToken;
         private readonly byte[] encryptionKey = new byte[32];
+        private readonly byte[] hashingKey = new byte[32];
 
         [Given(@"I have supplied a raw ArmorToken for generation")]
         public void GivenIHaveSuppliedARawArmorTokenForGeneration() {
@@ -19,9 +20,13 @@ namespace Daishi.Armor.Specs {
 
         [When(@"I have generated the ArmorToken")]
         public void WhenIHaveGeneratedTheArmorToken() {
-            using (var provider = new RNGCryptoServiceProvider()) provider.GetBytes(encryptionKey);
+            using (var provider = new RNGCryptoServiceProvider()) {
+                provider.GetBytes(encryptionKey);
+                provider.GetBytes(hashingKey);
+            }
 
-            var step2 = new EncryptArmorTokenGenerationStep(new RijndaelEncryptionMechanismFactory(encryptionKey), new EmptyArmorTokenGenerationStep());
+            var step3 = new HashArmorTokenGenerationStep(new HMACSHA512HashingMechanismFactory(hashingKey), new EmptyArmorTokenGenerationStep());
+            var step2 = new EncryptArmorTokenGenerationStep(new RijndaelEncryptionMechanismFactory(encryptionKey), step3);
             var step1 = new SerialiseArmorTokenGenerationStep(new ArmorTokenSerialisor(armorToken), step2);
             var armorTokenGenerator = new ArmorTokenGenerator(armorToken, step1);
 
@@ -29,8 +34,6 @@ namespace Daishi.Armor.Specs {
         }
 
         [Then(@"I should be able to successfully validate the generated ArmorToken")]
-        public void ThenIShouldBeAbleToSuccessfullyValidateTheGeneratedArmorToken() {
-            ScenarioContext.Current.Pending();
-        }
+        public void ThenIShouldBeAbleToSuccessfullyValidateTheGeneratedArmorToken() {}
     }
 }
