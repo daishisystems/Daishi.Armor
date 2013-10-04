@@ -59,6 +59,12 @@
       <DependentUpon>ArmorTokenIsEncryptedUsingRijndael.feature</DependentUpon>
     </Compile>
     <Compile Include="ArmorTokenIsEncryptedUsingRijndaelSteps.cs" />
+    <Compile Include="ArmorTokenIsGenerated.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArmorTokenIsGenerated.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ArmorTokenIsGeneratedSteps.cs" />
     <Compile Include="ArmorTokenIsSerialised.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,6 +105,10 @@
     <None Include="ArmorTokenIsEncryptedUsingRijndael.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ArmorTokenIsEncryptedUsingRijndael.feature.cs</LastGenOutput>
+    </None>
+    <None Include="ArmorTokenIsGenerated.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ArmorTokenIsGenerated.feature.cs</LastGenOutput>
     </None>
     <None Include="ArmorTokenIsSerialised.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

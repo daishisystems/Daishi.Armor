@@ -21,7 +21,7 @@ namespace Daishi.Armor {
             armorTokenHasher.Execute();
             var isValid = armorTokenHasher.Hash.Equals(Convert.ToBase64String(hashedArmorTokenParser.ParsedArmorToken.Hash));
 
-            ValidationStepResult = new ValidationStepResult {
+            ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                 IsValid = isValid,
                 Message = isValid ? "Untampered" : "Tampered",
                 Output = hashedArmorTokenParser.ParsedArmorToken.ArmorToken

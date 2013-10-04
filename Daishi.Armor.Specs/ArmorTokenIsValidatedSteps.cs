@@ -65,7 +65,7 @@ namespace Daishi.Armor.Specs {
 
         [Then(@"I should return a valid result")]
         public void ThenIShouldReturnAValidResult() {
-            Assert.IsTrue(armorTokenValidator.ValidationStepResult.IsValid);
+            Assert.IsTrue(armorTokenValidator.ArmorTokenValidationStepResult.IsValid);
         }
     }
 }

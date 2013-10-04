@@ -9,8 +9,8 @@ namespace Daishi.Armor {
         private readonly byte[] armorToken;
         private readonly ArmorTokenValidationStep first;
 
-        public object Result { get { return ValidationStepResult; } }
-        public ValidationStepResult ValidationStepResult { get; private set; }
+        public object Result { get { return ArmorTokenValidationStepResult; } }
+        public ArmorTokenValidationStepResult ArmorTokenValidationStepResult { get; private set; }
 
         public ArmorTokenValidator(byte[] armorToken, ArmorTokenValidationStep first) {
             this.armorToken = armorToken;
@@ -19,7 +19,7 @@ namespace Daishi.Armor {
 
         public void Execute() {
             first.Validate(armorToken);
-            ValidationStepResult = first.ValidationStepResult;
+            ArmorTokenValidationStepResult = first.ArmorTokenValidationStepResult;
         }
 
         public void Undo() {

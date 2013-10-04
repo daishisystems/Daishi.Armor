@@ -8,8 +8,8 @@ namespace Daishi.Armor {
     public abstract class ArmorTokenValidationStep : ICommand {
         private readonly ArmorTokenValidationStep next;
 
-        public object Result { get { return ValidationStepResult; } }
-        public ValidationStepResult ValidationStepResult { get; protected set; }
+        public object Result { get { return ArmorTokenValidationStepResult; } }
+        public ArmorTokenValidationStepResult ArmorTokenValidationStepResult { get; protected set; }
 
         protected ArmorTokenValidationStep(ArmorTokenValidationStep next) {
             this.next = next;
@@ -19,10 +19,10 @@ namespace Daishi.Armor {
 
         public virtual void Validate(object armorToken) {
             Execute();
-            if (!ValidationStepResult.IsValid) return;
+            if (!ArmorTokenValidationStepResult.IsValid) return;
 
-            next.Validate(ValidationStepResult.Output);
-            ValidationStepResult = next.ValidationStepResult;
+            next.Validate(ArmorTokenValidationStepResult.Output);
+            ArmorTokenValidationStepResult = next.ArmorTokenValidationStepResult;
         }
 
         public void Undo() {

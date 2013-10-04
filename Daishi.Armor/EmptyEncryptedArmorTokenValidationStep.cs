@@ -3,7 +3,7 @@
         public EmptyEncryptedArmorTokenValidationStep() : base(null) {}
 
         public override void Execute() {
-            ValidationStepResult = new ValidationStepResult {
+            ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                 IsValid = true,
                 Message = "Untampered"
             };

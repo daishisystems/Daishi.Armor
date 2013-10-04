@@ -49,6 +49,7 @@
     <Compile Include="ArmorToken.cs" />
     <Compile Include="ArmorTokenDeserialisor.cs" />
     <Compile Include="ArmorTokenEncryptor.cs" />
+    <Compile Include="ArmorTokenGenerator.cs" />
     <Compile Include="ArmorTokenHasher.cs" />
     <Compile Include="ArmorTokenHasherFactory.cs" />
     <Compile Include="ArmorTokenJsonParser.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="TimeStampClaimValidatorFactory.cs" />
     <Compile Include="UserIdClaimValidator.cs" />
     <Compile Include="UserIdClaimValidatorFactory.cs" />
-    <Compile Include="ValidationStepResult.cs" />
+    <Compile Include="ArmorTokenValidationStepResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

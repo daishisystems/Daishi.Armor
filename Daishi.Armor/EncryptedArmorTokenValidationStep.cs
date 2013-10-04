@@ -16,14 +16,14 @@ namespace Daishi.Armor {
         public override void Execute() {
             try {
                 encryptionMechanism.Execute();
-                ValidationStepResult = new ValidationStepResult {
+                ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                     IsValid = true,
                     Message = "Untampered",
                     Output = encryptionMechanism.Output
                 };
             }
             catch (CryptographicException) {
-                ValidationStepResult = new ValidationStepResult {
+                ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                     IsValid = false,
                     Message = "Tampered"
                 };

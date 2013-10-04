@@ -6,7 +6,7 @@
 
         public override void Execute() {
             armorTokenDeserialisor.Execute();
-            ValidationStepResult = new ValidationStepResult {
+            ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                 IsValid = true,
                 Message = "Untampered",
                 Output = armorTokenDeserialisor.DeserialisedArmorToken
