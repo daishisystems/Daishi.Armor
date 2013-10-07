@@ -9,8 +9,8 @@ namespace Daishi.Armor {
         private readonly ArmorToken armorToken;
         private readonly ArmorTokenGenerationStep first;
 
-        public object Result { get { return ArmorTokenGenerationStepResult; } }
-        public ArmorTokenGenerationStepResult ArmorTokenGenerationStepResult { get; private set; }
+        public object Result { get { return ArmorToken; } }
+        public string ArmorToken { get; private set; }
 
         public ArmorTokenGenerator(ArmorToken armorToken, ArmorTokenGenerationStep first) {
             this.armorToken = armorToken;
@@ -19,7 +19,7 @@ namespace Daishi.Armor {
 
         public void Execute() {
             first.Generate(armorToken);
-            ArmorTokenGenerationStepResult = first.ArmorTokenGenerationStepResult;
+            ArmorToken = (string) first.ArmorTokenGenerationStepResult.Output;
         }
 
         public void Undo() {

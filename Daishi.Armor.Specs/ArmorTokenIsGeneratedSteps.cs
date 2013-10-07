@@ -34,7 +34,7 @@ namespace Daishi.Armor.Specs {
             var armorTokenGenerator = new ArmorTokenGenerator(armorToken, step1);
 
             armorTokenGenerator.Execute();
-            hashedArmorToken = (string) armorTokenGenerator.ArmorTokenGenerationStepResult.Output;
+            hashedArmorToken = armorTokenGenerator.ArmorToken;
         }
 
         [Then(@"I should be able to successfully validate the generated ArmorToken")]
