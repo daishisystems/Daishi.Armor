@@ -17,7 +17,7 @@
             if (!userIdClaimValidator.IsValid) {
                 ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                     IsValid = false,
-                    Message = "Tampered"
+                    Message = "Tampered"                    
                 };
 
                 return;
@@ -29,7 +29,7 @@
             if (!timeStampClaimValidator.IsValid) {
                 ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                     IsValid = false,
-                    Message = "Tampered"
+                    Message = "Tampered"                    
                 };
 
                 return;
@@ -37,7 +37,8 @@
 
             ArmorTokenValidationStepResult = new ArmorTokenValidationStepResult {
                 IsValid = true,
-                Message = "Untampered"
+                Message = "Untampered",
+                Output = armorToken
             };
         }
 
