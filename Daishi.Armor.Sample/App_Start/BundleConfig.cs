@@ -23,11 +23,14 @@ namespace Daishi.Armor.Sample {
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/ajaxinitialiser").Include(
-                "~/Scripts/ajaxinitialiser.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ajaxmanager").Include(
+                "~/Scripts/ajaxmanager.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/values").Include(
                 "~/Scripts/values.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/armortokenmanager").Include(
+                "~/Scripts/armortokenmanager.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

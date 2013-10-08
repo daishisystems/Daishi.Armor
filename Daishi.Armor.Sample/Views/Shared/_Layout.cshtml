@@ -28,13 +28,12 @@
         @RenderBody()
 
         @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/ajaxinitialiser")
+        @Scripts.Render("~/bundles/ajaxmanager")
         @Scripts.Render("~/bundles/values")
+        @Scripts.Render("~/bundles/armortokenmanager")
         <script>
             $(document).ready(function() {
-                var armorToken = "ARMOR " + $("#armorToken").val();
-
-                ajaxinitialiser.initialise(armorToken);
+                ajaxManager.setHeader($("#armorToken").val());
                 values.getAll("#getValues");
             });
         </script>

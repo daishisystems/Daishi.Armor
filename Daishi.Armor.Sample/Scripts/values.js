@@ -6,7 +6,8 @@
                 url: "../api/values",
                 accepts: "application/json",
                 contentType: "application/json",
-                success: function(response) {
+                success: function(response, status, xhr) {
+                    armorTokenManager.setArmorToken(xhr, "#armorToken");
                     var valueList = "Values:";
 
                     $.each(response, function(k, v) {
