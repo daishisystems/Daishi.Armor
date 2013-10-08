@@ -13,9 +13,12 @@ using System.Web.Http.Controllers;
 
 #endregion
 
-namespace Daishi.Armor.Sample {
-    // todo: Refactor this to Builders, etc.
+/* 
+        todo: Add Validator Builder
+        todo: Add commands to encapsulate logic below
+*/
 
+namespace Daishi.Armor.Sample {
     public class ArmorAuthorizeAttribute : AuthorizeAttribute {
         protected override bool IsAuthorized(HttpActionContext actionContext) {
             var principal = (ClaimsIdentity) Thread.CurrentPrincipal.Identity;
@@ -45,14 +48,12 @@ namespace Daishi.Armor.Sample {
 
             var armorToken = new ArmorToken(userId, platform, nonceGenerator.Nonce, new[] {new Claim("Another", "Claim")});
 
-            var step3 = new HashArmorTokenGenerationStep(new HMACSHA512HashingMechanismFactory(hashingKey), new EmptyArmorTokenGenerationStep());
-            var step2 = new EncryptArmorTokenGenerationStep(new RijndaelEncryptionMechanismFactory(encryptionKey), step3);
-            var step1 = new SerialiseArmorTokenGenerationStep(new ArmorTokenSerialisor(), step2);
-            var armorTokenGenerator = new ArmorTokenGenerator(armorToken, step1);
+            var armorTokenConstructor = new ArmorTokenConstructor();
+            var standardSecureArmorTokenBuilder = new StandardSecureArmorTokenBuilder(armorToken, encryptionKey, hashingKey);
+            armorTokenConstructor.Construct(standardSecureArmorTokenBuilder);
 
-            armorTokenGenerator.Execute();
-            var hashedArmorToken = armorTokenGenerator.ArmorToken;
-            HttpContext.Current.Response.AppendHeader("ARMOR", hashedArmorToken);
+            var secureArmorToken = standardSecureArmorTokenBuilder.SecureArmorToken;
+            HttpContext.Current.Response.AppendHeader("ARMOR", secureArmorToken);
 
             return armorTokenValidator.ArmorTokenValidationStepResult.IsValid;
         }
