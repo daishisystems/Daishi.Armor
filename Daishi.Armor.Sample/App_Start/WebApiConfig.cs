@@ -22,7 +22,7 @@ namespace Daishi.Armor.Sample {
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
             config.MessageHandlers.Add(new DummyDelegatingHandler());
-            //config.Filters.Add(new ArmorAuthorizeAttribute());
+            config.Filters.Add(new ArmorAuthorizeAttribute());
         }
     }
 }

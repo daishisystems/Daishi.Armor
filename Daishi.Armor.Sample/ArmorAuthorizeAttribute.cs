@@ -14,6 +14,8 @@ using System.Web.Http.Controllers;
 #endregion
 
 namespace Daishi.Armor.Sample {
+    // todo: Refactor this to Builders, etc.
+
     public class ArmorAuthorizeAttribute : AuthorizeAttribute {
         protected override bool IsAuthorized(HttpActionContext actionContext) {
             var principal = (ClaimsIdentity) Thread.CurrentPrincipal.Identity;

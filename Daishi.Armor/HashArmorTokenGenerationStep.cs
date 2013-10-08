@@ -9,6 +9,10 @@ namespace Daishi.Armor {
         private readonly HashingMechanismFactory hashingMechanismFactory;
         private byte[] armorToken;
 
+        public HashArmorTokenGenerationStep(HashingMechanismFactory hashingMechanismFactory) : base(new EmptyArmorTokenGenerationStep()) {
+            this.hashingMechanismFactory = hashingMechanismFactory;
+        }
+
         public HashArmorTokenGenerationStep(HashingMechanismFactory hashingMechanismFactory, ArmorTokenGenerationStep next) : base(next) {
             this.hashingMechanismFactory = hashingMechanismFactory;
         }

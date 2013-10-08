@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArmorToken.cs" />
+    <Compile Include="ArmorTokenConstructor.cs" />
     <Compile Include="ArmorTokenDeserialisor.cs" />
     <Compile Include="ArmorTokenEncryptor.cs" />
     <Compile Include="ArmorTokenGenerationStep.cs" />
@@ -96,8 +97,10 @@
     <Compile Include="RijndaelEncryptionMechanismFactory.cs" />
     <Compile Include="ParsedArmorToken.cs" />
     <Compile Include="HashedArmorTokenParser.cs" />
+    <Compile Include="SecureArmorTokenBuilder.cs" />
     <Compile Include="SerialiseArmorTokenGenerationStep.cs" />
     <Compile Include="SerialisedArmorTokenValidationStep.cs" />
+    <Compile Include="StandardSecureArmorTokenBuilder.cs" />
     <Compile Include="TimeStampClaimValidator.cs" />
     <Compile Include="TimeStampClaimValidatorFactory.cs" />
     <Compile Include="UserIdClaimValidator.cs" />

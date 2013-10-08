@@ -9,6 +9,10 @@ namespace Daishi.Armor {
         private readonly EncryptionMechanismFactory encryptionMechanismFactory;
         private string armorToken;
 
+        public EncryptArmorTokenGenerationStep(EncryptionMechanismFactory encryptionMechanismFactory) : base(new EmptyArmorTokenGenerationStep()) {
+            this.encryptionMechanismFactory = encryptionMechanismFactory;
+        }
+
         public EncryptArmorTokenGenerationStep(EncryptionMechanismFactory encryptionMechanismFactory, ArmorTokenGenerationStep next) : base(next) {
             this.encryptionMechanismFactory = encryptionMechanismFactory;
         }

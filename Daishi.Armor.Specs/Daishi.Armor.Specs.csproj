@@ -49,6 +49,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArmorTokenConstructorConstructsStandardSecureArmorToken.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArmorTokenConstructorConstructsStandardSecureArmorToken.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ArmorTokenConstructorConstructsStandardSecureArmorTokenSteps.cs" />
     <Compile Include="ArmorTokenIsDeserialised.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ArmorTokenConstructorConstructsStandardSecureArmorToken.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ArmorTokenConstructorConstructsStandardSecureArmorToken.feature.cs</LastGenOutput>
+    </None>
     <None Include="ArmorTokenIsDeserialised.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ArmorTokenIsDeserialised.feature.cs</LastGenOutput>
