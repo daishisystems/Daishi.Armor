@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 
@@ -17,6 +18,7 @@ namespace Daishi.Armor.Sample {
         protected override bool IsAuthorized(HttpActionContext actionContext) {
             var principal = (ClaimsIdentity) Thread.CurrentPrincipal.Identity;
             var userId = principal.Claims.Single(c => c.Type.Equals("UserId")).Value;
+            var platform = principal.Claims.Single(c => c.Type.Equals("Platform")).Value;
 
             IEnumerable<string> headers;
             actionContext.Request.Headers.TryGetValues("Authorization", out headers);
@@ -26,7 +28,7 @@ namespace Daishi.Armor.Sample {
             var encryptionKey = Convert.FromBase64String("0nA6gWIoNXeeFjJFo1qi1ZlL7NI/4a6YbL8RnqMTC1A=");
             var hashingKey = Convert.FromBase64String("0nA6gWIoNXeeFjJFo1qi1ZlL7NI/4a6YbL8RnqMTC1A=");
 
-            var validateClaims = new ClaimsArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep(), new UserIdClaimValidatorFactory(userId), new TimeStampClaimValidatorFactory(300000));
+            var validateClaims = new ClaimsArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep(), new UserIdClaimValidatorFactory(userId), new TimeStampClaimValidatorFactory(10000000000));
             var deserialise = new SerialisedArmorTokenValidationStep(new ArmorTokenDeserialisor(), validateClaims);
             var decrypt = new EncryptedArmorTokenValidationStep(deserialise, new RijndaelDecryptionMechanismFactory(encryptionKey));
             var validateSignature = new HashedArmorTokenValidationStep(decrypt, new HashedArmorTokenParser(HashingMode.HMACSHA512), new HMACSHA512ArmorTokenHasherFactory(hashingKey));
@@ -35,7 +37,11 @@ namespace Daishi.Armor.Sample {
             armorTokenValidator.Execute();
 
             if (!armorTokenValidator.ArmorTokenValidationStepResult.IsValid) return false;
-            var armorToken = new ArmorToken("paul.mooney@hmhco.com", "HMH", 0, new[] {new Claim("Dummy", "Claim")});
+
+            var nonceGenerator = new NonceGenerator();
+            nonceGenerator.Execute();
+
+            var armorToken = new ArmorToken(userId, platform, nonceGenerator.Nonce, new[] {new Claim("Another", "Claim")});
 
             var step3 = new HashArmorTokenGenerationStep(new HMACSHA512HashingMechanismFactory(hashingKey), new EmptyArmorTokenGenerationStep());
             var step2 = new EncryptArmorTokenGenerationStep(new RijndaelEncryptionMechanismFactory(encryptionKey), step3);
@@ -44,11 +50,7 @@ namespace Daishi.Armor.Sample {
 
             armorTokenGenerator.Execute();
             var hashedArmorToken = armorTokenGenerator.ArmorToken;
-
-            var response = actionContext.Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Headers.Add("ARMOR", hashedArmorToken);
-            actionContext.Response = response;
+            HttpContext.Current.Response.AppendHeader("ARMOR", hashedArmorToken);
 
             return armorTokenValidator.ArmorTokenValidationStepResult.IsValid;
         }

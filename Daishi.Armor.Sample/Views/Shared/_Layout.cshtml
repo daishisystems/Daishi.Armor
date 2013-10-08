@@ -8,6 +8,7 @@
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
+        <input id="armorToken" type="hidden" value="9Icch0i/RPR7RPNa/ul3Vxddvrlse7Y6QKmoT1SVlQ6/PheS0X9RBzwFkc6GmoIt7Ma1mjQVawQf24skEvIcRDAdlLp2Uy9E7f99Tnc4b2t9QgbKftBMmHkW87FiXRyb7ArvnnIuwxiHbW2u0dIivBn+WbyLtDMX4JmmS0sIQrTh51VbHNB78k/D/6aU9+SdEVrA4DSQ5AaGLuiFOpYD5Rloy7hDV7x7QeeYz1vnbBDKfQyS+GNJOas8DxFAu8pa41FL8dQL8YT56qoJ8ojEwMdBDXuK+tGv0hMeqzvGTJnRmEMGqXsNgQjXhU3jMlznrA/RgJYJvhxDL3QcUFl+JA=="/>
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
@@ -27,6 +28,16 @@
         @RenderBody()
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/ajaxinitialiser")
+        @Scripts.Render("~/bundles/values")
+        <script>
+            $(document).ready(function() {
+                var armorToken = "ARMOR " + $("#armorToken").val();
+
+                ajaxinitialiser.initialise(armorToken);
+                values.getAll("#getValues");
+            });
+        </script>
         @RenderSection("scripts", required: false)
     </body>
 </html>

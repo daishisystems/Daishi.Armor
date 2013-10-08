@@ -7,9 +7,9 @@ using System.Security.Claims;
 
 namespace Daishi.Armor {
     public class TimeStampClaimValidatorFactory : ClaimValidatorFactory {
-        private readonly int timeout;
+        private readonly double timeout;
 
-        public TimeStampClaimValidatorFactory(int timeout) {
+        public TimeStampClaimValidatorFactory(double timeout) {
             this.timeout = timeout;
         }
 
