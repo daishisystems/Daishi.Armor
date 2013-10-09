@@ -10,21 +10,27 @@ using System.Web.Http.Controllers;
 
 #endregion
 
-/*      
-        todo: Add commands to encapsulate logic below
-*/
-
 namespace Daishi.Armor.Sample {
     public class ArmorAuthorizeAttribute : AuthorizeAttribute {
         protected override bool IsAuthorized(HttpActionContext actionContext) {
+            #region Read logged-in user claims
+
             var principal = (ClaimsIdentity) Thread.CurrentPrincipal.Identity;
             var userId = principal.Claims.Single(c => c.Type.Equals("UserId")).Value;
             var platform = principal.Claims.Single(c => c.Type.Equals("Platform")).Value;
+
+            #endregion
+
+            #region Ensure existence of ArmorToken in HTTP header
 
             var armorHeaderParser = new ArmorHeaderParser(actionContext.Request.Headers);
             armorHeaderParser.Execute();
 
             if (!armorHeaderParser.ArmorTokenHeader.IsValid) return false;
+
+            #endregion
+
+            #region Validate ArmorToken
 
             var encryptionKey = Convert.FromBase64String("0nA6gWIoNXeeFjJFo1qi1ZlL7NI/4a6YbL8RnqMTC1A=");
             var hashingKey = Convert.FromBase64String("0nA6gWIoNXeeFjJFo1qi1ZlL7NI/4a6YbL8RnqMTC1A=");
@@ -34,6 +40,10 @@ namespace Daishi.Armor.Sample {
 
             if (!secureArmorTokenValidator.ArmorTokenValidationStepResult.IsValid) return false;
 
+            #endregion
+
+            #region Refresh ArmorToken and re-issue
+
             var nonceGenerator = new NonceGenerator();
             nonceGenerator.Execute();
 
@@ -41,12 +51,14 @@ namespace Daishi.Armor.Sample {
 
             var armorTokenConstructor = new ArmorTokenConstructor();
             var standardSecureArmorTokenBuilder = new StandardSecureArmorTokenBuilder(armorToken, encryptionKey, hashingKey);
-            armorTokenConstructor.Construct(standardSecureArmorTokenBuilder);
+            var generateSecureArmorToken = new GenerateSecureArmorToken(armorTokenConstructor, standardSecureArmorTokenBuilder);
 
-            var secureArmorToken = standardSecureArmorTokenBuilder.SecureArmorToken;
-            HttpContext.Current.Response.AppendHeader("ARMOR", secureArmorToken);
+            generateSecureArmorToken.Execute();
 
-            return secureArmorTokenValidator.ArmorTokenValidationStepResult.IsValid;
+            #endregion
+
+            HttpContext.Current.Response.AppendHeader("ARMOR", generateSecureArmorToken.SecureArmorToken);
+            return true;
         }
     }
 }

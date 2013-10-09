@@ -57,7 +57,7 @@ window.Modernizr = (function(window, document, undefined) {
         // Following spec is to expose vendor-specific style properties as:
         //   elem.style.WebkitBorderRadius
         // and the following would be incorrect:
-    //   elem.style.webkitBorderRadius
+        //   elem.style.webkitBorderRadius
 
     // Webkit ghosts their properties in lowercase but Opera & Moz do not.
     // Microsoft uses a lowercase `ms` instead of the correct `Ms` in IE8+
@@ -166,8 +166,8 @@ window.Modernizr = (function(window, document, undefined) {
         //
         // isEventSupported determines if a given element supports the given event
         // kangax.github.com/iseventsupported/
-     //
-    // The following results are known incorrects:
+        //
+     // The following results are known incorrects:
     //   Modernizr.hasEvent("webkitTransitionEnd", elem) // false negative
     //   Modernizr.hasEvent("textInput") // in Webkit. github.com/Modernizr/Modernizr/issues/333
     //   ...

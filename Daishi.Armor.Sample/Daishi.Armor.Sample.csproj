@@ -169,6 +169,7 @@
     <Compile Include="Controllers\PerformanceTestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DummyDelegatingHandler.cs" />
+    <Compile Include="GenerateSecureArmorToken.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
