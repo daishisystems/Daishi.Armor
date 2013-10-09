@@ -98,6 +98,7 @@
     <Compile Include="ParsedArmorToken.cs" />
     <Compile Include="HashedArmorTokenParser.cs" />
     <Compile Include="SecureArmorTokenBuilder.cs" />
+    <Compile Include="SecureArmorTokenValidator.cs" />
     <Compile Include="SerialiseArmorTokenGenerationStep.cs" />
     <Compile Include="SerialisedArmorTokenValidationStep.cs" />
     <Compile Include="StandardSecureArmorTokenBuilder.cs" />

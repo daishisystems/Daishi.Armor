@@ -85,6 +85,11 @@
       <DependentUpon>ArmorTokenIsValidated.feature</DependentUpon>
     </Compile>
     <Compile Include="ArmorTokenIsValidatedSteps.cs" />
+    <Compile Include="SecureArmorTokenValidatorValidatesSecureArmorToken.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecureArmorTokenValidatorValidatesSecureArmorToken.feature</DependentUpon>
+    </Compile>
     <Compile Include="EncryptedArmorTokenIsHashedUsingHMACSHA256.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,6 +108,7 @@
     </Compile>
     <Compile Include="NonceGeneratorCreatesRandomNumberSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecureArmorTokenValidatorValidatesSecureArmorTokenSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -129,6 +135,10 @@
     <None Include="ArmorTokenIsValidated.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ArmorTokenIsValidated.feature.cs</LastGenOutput>
+    </None>
+    <None Include="SecureArmorTokenValidatorValidatesSecureArmorToken.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SecureArmorTokenValidatorValidatesSecureArmorToken.feature.cs</LastGenOutput>
     </None>
     <None Include="EncryptedArmorTokenIsHashedUsingHMACSHA256.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

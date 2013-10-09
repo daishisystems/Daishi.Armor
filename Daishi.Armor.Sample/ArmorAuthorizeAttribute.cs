@@ -13,8 +13,7 @@ using System.Web.Http.Controllers;
 
 #endregion
 
-/* 
-        todo: Add Validator Builder
+/*      
         todo: Add commands to encapsulate logic below
 */
 
@@ -33,15 +32,18 @@ namespace Daishi.Armor.Sample {
             var encryptionKey = Convert.FromBase64String("0nA6gWIoNXeeFjJFo1qi1ZlL7NI/4a6YbL8RnqMTC1A=");
             var hashingKey = Convert.FromBase64String("0nA6gWIoNXeeFjJFo1qi1ZlL7NI/4a6YbL8RnqMTC1A=");
 
-            var validateClaims = new ClaimsArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep(), new UserIdClaimValidatorFactory(userId), new TimeStampClaimValidatorFactory(10000000000));
-            var deserialise = new SerialisedArmorTokenValidationStep(new ArmorTokenDeserialisor(), validateClaims);
-            var decrypt = new EncryptedArmorTokenValidationStep(deserialise, new RijndaelDecryptionMechanismFactory(encryptionKey));
-            var validateSignature = new HashedArmorTokenValidationStep(decrypt, new HashedArmorTokenParser(HashingMode.HMACSHA512), new HMACSHA512ArmorTokenHasherFactory(hashingKey));
+            //var validateClaims = new ClaimsArmorTokenValidationStep(new EmptyEncryptedArmorTokenValidationStep(), new UserIdClaimValidatorFactory(userId), new TimeStampClaimValidatorFactory(10000000000));
+            //var deserialise = new SerialisedArmorTokenValidationStep(new ArmorTokenDeserialisor(), validateClaims);
+            //var decrypt = new EncryptedArmorTokenValidationStep(deserialise, new RijndaelDecryptionMechanismFactory(encryptionKey));
+            //var validateSignature = new HashedArmorTokenValidationStep(decrypt, new HashedArmorTokenParser(HashingMode.HMACSHA512), new HMACSHA512ArmorTokenHasherFactory(hashingKey));
 
-            var armorTokenValidator = new ArmorTokenValidator(Convert.FromBase64String(armorTokenHeader), validateSignature);
-            armorTokenValidator.Execute();
+            //var armorTokenValidator = new ArmorTokenValidator(Convert.FromBase64String(armorTokenHeader), validateSignature);
+            //armorTokenValidator.Execute();
 
-            if (!armorTokenValidator.ArmorTokenValidationStepResult.IsValid) return false;
+            var secureArmorTokenValidator = new SecureArmorTokenValidator(armorTokenHeader, encryptionKey, hashingKey, userId, 10000000000);
+            secureArmorTokenValidator.Execute();
+
+            if (!secureArmorTokenValidator.ArmorTokenValidationStepResult.IsValid) return false;
 
             var nonceGenerator = new NonceGenerator();
             nonceGenerator.Execute();
@@ -55,7 +57,7 @@ namespace Daishi.Armor.Sample {
             var secureArmorToken = standardSecureArmorTokenBuilder.SecureArmorToken;
             HttpContext.Current.Response.AppendHeader("ARMOR", secureArmorToken);
 
-            return armorTokenValidator.ArmorTokenValidationStepResult.IsValid;
+            return secureArmorTokenValidator.ArmorTokenValidationStepResult.IsValid;
         }
 
         protected override void HandleUnauthorizedRequest(HttpActionContext actionContext) {

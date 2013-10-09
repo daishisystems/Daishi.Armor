@@ -4,6 +4,11 @@
         private readonly ClaimValidatorFactory timeStampClaimValidatorFactory;
         private ArmorToken armorToken;
 
+        public ClaimsArmorTokenValidationStep(ClaimValidatorFactory userIdClaimValidatorFactory, ClaimValidatorFactory timeStampClaimValidatorFactory) : base(new EmptyEncryptedArmorTokenValidationStep()) {
+            this.userIdClaimValidatorFactory = userIdClaimValidatorFactory;
+            this.timeStampClaimValidatorFactory = timeStampClaimValidatorFactory;
+        }
+
         public ClaimsArmorTokenValidationStep(ArmorTokenValidationStep next, ClaimValidatorFactory userIdClaimValidatorFactory,
                                               ClaimValidatorFactory timeStampClaimValidatorFactory) : base(next) {
             this.userIdClaimValidatorFactory = userIdClaimValidatorFactory;

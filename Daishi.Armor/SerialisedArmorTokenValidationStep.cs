@@ -3,6 +3,10 @@
         private readonly ArmorTokenDeserialisor armorTokenDeserialisor;
         private string armorToken;
 
+        public SerialisedArmorTokenValidationStep(ArmorTokenDeserialisor armorTokenDeserialisor) : base(new EmptyEncryptedArmorTokenValidationStep()) {
+            this.armorTokenDeserialisor = armorTokenDeserialisor;
+        }
+
         public SerialisedArmorTokenValidationStep(ArmorTokenDeserialisor armorTokenDeserialisor, ArmorTokenValidationStep next) : base(next) {
             this.armorTokenDeserialisor = armorTokenDeserialisor;
         }

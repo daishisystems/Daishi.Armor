@@ -9,6 +9,11 @@ namespace Daishi.Armor {
         private readonly HashedArmorTokenParser hashedArmorTokenParser;
         private readonly ArmorTokenHasherFactory armorTokenHasherFactory;
 
+        public HashedArmorTokenValidationStep(HashedArmorTokenParser hashedArmorTokenParser, ArmorTokenHasherFactory armorTokenHasherFactory) : base(new EmptyEncryptedArmorTokenValidationStep()) {
+            this.hashedArmorTokenParser = hashedArmorTokenParser;
+            this.armorTokenHasherFactory = armorTokenHasherFactory;
+        }
+
         public HashedArmorTokenValidationStep(ArmorTokenValidationStep next, HashedArmorTokenParser hashedArmorTokenParser, ArmorTokenHasherFactory armorTokenHasherFactory) : base(next) {
             this.hashedArmorTokenParser = hashedArmorTokenParser;
             this.armorTokenHasherFactory = armorTokenHasherFactory;

@@ -5,7 +5,7 @@ using System.Web.Http;
 
 #endregion
 
-namespace Daishi.Armor.Sample.Controllers {    
+namespace Daishi.Armor.Sample.Controllers {
     public class ValuesController : ApiController {
         public IEnumerable<string> Get() {
             return new[] {"value1", "value2"};
