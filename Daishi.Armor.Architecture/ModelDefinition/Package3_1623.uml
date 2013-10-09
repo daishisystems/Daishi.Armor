@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="3ceaf36d-708f-4a3e-962a-5fa858500699"
+  name="JsonParser"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="7e638c08-b760-4649-a40d-7061b753689f"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DDaishi.JsonParser"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="245ab86b-7c49-44ea-a0b0-a678297bd96c"
+        name="JsonParser&lt;ArmorToken‎&gt;"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ee9eb809-f140-4c62-8f51-dba4de98f184"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="86bfc9d9-df82-400e-b13e-52bb33ddb7fc">
+                <propertyInstance
+                  Id="b10937e6-439d-4002-8aab-451dff5110bb"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="aa411ccf-e31e-46a8-92ee-2721548d32e6">
+                <propertyInstance
+                  Id="03a6f8be-87c3-45be-9dda-ebbfe36953ec"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="17997b3c-d6b6-4643-a891-bdc5a8f41820">
+                <propertyInstance
+                  Id="883e77a7-5537-4350-94df-577d091a02f9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="52cbce59-b5d3-48fe-b797-4c892b769c46">
+                <propertyInstance
+                  Id="ce890879-9955-408d-9d47-253205b261ab"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0a27d068-9399-4cd9-8b47-9c5608390979">
+                <propertyInstance
+                  Id="b0e3d1a5-4dce-41ad-bc31-9f7d67a3e1de"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="e84d5452-1ecd-4ae7-b0da-c1bfc22a62e6">
+            <redefinableTemplateSignatureMoniker
+              Id="80cbf02b-5807-4cd4-b596-7e22849416cf"
+              LastKnownLocation="Package3_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="dd99bafa-7da6-434f-9eae-545b3f898c4c">
+                  <actuals>
+                    <classMoniker
+                      Id="35f72148-2d3f-4497-a15b-c4490ac1f41d"
+                      LastKnownName="ArmorToken"
+                      LastKnownLocation="Package1_1620.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="a4ae2d63-ef33-4f2d-afcd-39add8fbdf6e"
+                      LastKnownLocation="Package3_1623.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="95e97834-66b1-4d23-ac0f-1c74d7cf6fdd"
+        name="JsonParser"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="78f4666b-46ef-4ab5-9d4a-367754bdf93d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2Fsource%2FDaishi.Armor%2Fpackages%2FDaishi.JsonParser.1.5%2Flib%2FDaishi.JsonParser.dll Namespace%3DDaishi.JsonParser Type%3D(Name%3DJsonParser GenericParameterCount%3D1)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e0e6f147-8543-4ccd-b614-2f6be67ab8a8"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2ddbdb03-07bf-4dc5-9e4e-d3317d6d5fb8">
+                <propertyInstance
+                  Id="aa599fc0-5d64-481b-ad75-e60357d4e20d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="52505fcf-28fb-4372-9217-ef4b51c808f3">
+                <propertyInstance
+                  Id="24ed57ea-fae2-4447-a776-9752b1df1733"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="57566faa-4b48-489f-afab-699e89813291">
+                <propertyInstance
+                  Id="7bb7a36c-86b8-4296-abea-b4f19c115819"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="51dc0214-6627-45f6-848b-1ca6ccc7472d">
+                <propertyInstance
+                  Id="a8b3c92c-f7de-4380-b844-f6122057ef50"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9911494e-3e6e-46bc-8eb6-4cbe02657ddd">
+                <propertyInstance
+                  Id="40868ebb-cb31-41d4-8ba6-28941e38b7f7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedRedefinableTemplateSignatureInternal>
+          <redefinableTemplateSignature
+            Id="80cbf02b-5807-4cd4-b596-7e22849416cf"
+            parameters=""
+            name="RedefinableTemplateSignature1"
+            isLeaf="false">
+            <ownedParameters>
+              <classifierTemplateParameter
+                Id="a4ae2d63-ef33-4f2d-afcd-39add8fbdf6e">
+                <referencesInternal>
+                  <reference
+                    Id="c39cedfb-feff-4c84-9c89-d06e562a3493"
+                    handle="viewcode://./CodeSchema_GenericParameter?Assembly%3Dfile:%2F%2F%2FC:%2Fsource%2FDaishi.Armor%2Fpackages%2FDaishi.JsonParser.1.5%2Flib%2FDaishi.JsonParser.dll Namespace%3DDaishi.JsonParser Type%3D(Name%3DJsonParser GenericParameterCount%3D1) ParameterIdentifier%3D0"
+                    tag="ViewCode" />
+                </referencesInternal>
+                <ownedParameterableElement>
+                  <class
+                    Id="acc41b62-8bbc-41a4-907e-2dae33aa1076"
+                    name="TParsable"
+                    isAbstract="false"
+                    isLeaf="false"
+                    isActiveClass="false" />
+                </ownedParameterableElement>
+              </classifierTemplateParameter>
+            </ownedParameters>
+          </redefinableTemplateSignature>
+        </ownedRedefinableTemplateSignatureInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

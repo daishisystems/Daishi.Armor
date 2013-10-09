@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="872cbd41-45e2-4693-a674-b5c5098f1cde"
+  name="Json"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="17b926fc-e3d0-4c19-b6a1-216addceb663"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DNewtonsoft.Json"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ddc3809f-181e-47c1-9545-182e851032e6"
+        name="JsonTextReader"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="d85c372f-c576-428e-a597-2e90deee77da"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2Fsource%2FDaishi.Armor%2Fpackages%2FNewtonsoft.Json.5.0.6%2Flib%2Fnet45%2FNewtonsoft.Json.dll Namespace%3DNewtonsoft.Json Type%3DJsonTextReader"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b9cf2af9-7f27-43cd-b1e4-dac9f143bfcb"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="369cf78f-9fe2-4cab-b3d5-e0090e46496a">
+                <propertyInstance
+                  Id="d3e5d9e9-3690-4ebc-b320-5d136e6dd310"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7293c1db-0428-44a7-aaee-1d064760bf19">
+                <propertyInstance
+                  Id="6f9be0c2-9e75-4a14-ba7c-d5d868d8d020"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b1336a8e-d8c6-45d8-9d63-ca704a2c1252">
+                <propertyInstance
+                  Id="6d776af8-499f-4a89-a690-1410180b8d3e"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="74497a5f-76dd-4360-9d4f-2864f7aea470">
+                <propertyInstance
+                  Id="a1cf7f2d-dae5-4596-9c97-18d100ddf6b1"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9e96bf4c-f5d4-4d97-bd48-75f9780df4cb">
+                <propertyInstance
+                  Id="6f7244c5-026a-4a0b-836e-a89beac84ebe"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

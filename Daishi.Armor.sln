@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Armor", "Daishi.Armor\Daishi.Armor.csproj", "{148E86F3-01A3-42E9-BE4D-CB8929F37365}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Armor.Specs", "Daishi.Armor.Specs\Daishi.Armor.Specs.csproj", "{43563212-74F4-42E9-8EE6-FA216653A29B}"
@@ -15,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9979DA
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Armor.Sample", "Daishi.Armor.Sample\Daishi.Armor.Sample.csproj", "{77D8929A-9951-408B-A9EB-F9CD8BEF1268}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Daishi.Armor.Architecture", "Daishi.Armor.Architecture\Daishi.Armor.Architecture.modelproj", "{0F7A51F5-D5E5-44DA-B97B-00AEF57FA503}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +42,10 @@ Global
 		{77D8929A-9951-408B-A9EB-F9CD8BEF1268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D8929A-9951-408B-A9EB-F9CD8BEF1268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D8929A-9951-408B-A9EB-F9CD8BEF1268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F7A51F5-D5E5-44DA-B97B-00AEF57FA503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7A51F5-D5E5-44DA-B97B-00AEF57FA503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7A51F5-D5E5-44DA-B97B-00AEF57FA503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7A51F5-D5E5-44DA-B97B-00AEF57FA503}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

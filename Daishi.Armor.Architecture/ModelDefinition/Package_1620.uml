@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f66623c1-14e6-4830-afe7-fcd64e14622b"
+  name="Daishi"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="664ff786-5dde-4073-a3c9-6e6a6fcfc860"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DDaishi"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="95d044dc-57ae-4df8-bd9d-32c101c8cefc"
+        LastKnownName="Armor"
+        LastKnownLocation="Package1_1620.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="3ceaf36d-708f-4a3e-962a-5fa858500699"
+        LastKnownName="JsonParser"
+        LastKnownLocation="Package3_1623.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
