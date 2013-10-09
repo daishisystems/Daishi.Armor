@@ -163,6 +163,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="ArmorAuthorizeAttribute.cs" />
+    <Compile Include="ArmorHeaderParser.cs" />
+    <Compile Include="ArmorTokenHeader.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerformanceTestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
