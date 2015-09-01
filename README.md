@@ -1,4 +1,4 @@
-Daishi.Armor
-============
-
-Advanced Resilient Mode of Recognition
+<a href="http://insidethecpu.com/2015/04/10/protecting-asp-net-applications-against-csrf-attacks/">![Image of insidethecpu](https://dl.dropboxusercontent.com/u/26042707/Daishi%20Systems%20Icon%20with%20Text%20%28really%20tiny%20with%20photo%29.png)</a>
+##ARMOR: Advanced Resilient Mode of Recognition
+*Click* <a href="http://insidethecpu.com/2015/04/10/protecting-asp-net-applications-against-csrf-attacks/">*here*</a> *for an in-depth tutorial on* *protecting ASP.NET applications from CSRF attacks* *with ARMOR*
+<a href="http://insidethecpu.com/2015/04/10/protecting-asp-net-applications-against-csrf-attacks/">![Image of ARMOR](https://dl.dropboxusercontent.com/u/26042707/daishi.armor.jpg)</a>
